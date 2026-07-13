@@ -355,7 +355,7 @@
     }
 
     async function loadData() {
-      const { data, error } = await supabase.from('service_tracking').select('*').eq('status', 'Diambil').order('waktu_selesai', { ascending: false });
+      const { data, error } = await supabase.from('service_tracking').select('*').eq('status', 'diambil').order('waktu_selesai', { ascending: false });
       if (error) {
         alert('Gagal memuat data: ' + error.message);
         return;

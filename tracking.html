@@ -159,16 +159,7 @@
                 </div>
               </div>
               
-              <!-- Step 6: Sudah Diambil -->
-              <div class="flex items-start gap-4 relative z-10 opacity-40" id="step-6">
-                <div class="w-12 h-12 rounded-full flex items-center justify-center shrink-0 step-icon bg-slate-200 text-slate-500">
-                  <i class="ph-bold ph-hand-heart text-xl"></i>
-                </div>
-                <div class="pt-2">
-                  <h4 class="font-bold text-slate-800">Sudah Diambil</h4>
-                  <p class="text-sm text-slate-500">Printer telah diambil oleh pelanggan. Terima kasih telah menggunakan jasa kami.</p>
-                </div>
-              </div>
+              
 
             </div>
           </div>
@@ -222,13 +213,13 @@
           'dicek': [1, 2],
           'diperbaiki': [1, 2, 4],
           'selesai': [1, 2, 4, 5],
-          'diambil': [1, 2, 4, 5, 6]
+          'diambil': [1, 2, 4, 5]
         };
         
         const activeSteps = statusMap[data.status.toLowerCase()] || [1];
         
         // Reset all steps
-        [1,2,3,4,5,6].forEach(i => {
+        [1,2,3,4,5].forEach(i => {
           const el = document.getElementById('step-'+i);
           if(el) {
             el.classList.add('opacity-40');
