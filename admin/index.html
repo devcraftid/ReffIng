@@ -218,6 +218,7 @@
   </style>
 
   <script type="module">
+    import { supabase } from '../src/supabase.js';
     import { logoutAdmin } from '../src/auth.js';
     const logoutBtn = document.getElementById('logout-btn');
     if(logoutBtn) logoutBtn.addEventListener('click', logoutAdmin);
