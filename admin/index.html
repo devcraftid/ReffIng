@@ -356,6 +356,14 @@
     loadNotifications();
     loadDashboardData();
 
+    // Realtime Updates
+    supabase.channel('dashboard_updates')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'service_tracking' }, () => {
+        loadNotifications();
+        loadDashboardData();
+      })
+      .subscribe();
+
   </script>
 </body>
 </html>

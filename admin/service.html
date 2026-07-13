@@ -526,6 +526,17 @@
 
     loadData();
     loadInventory();
+
+    // Realtime Updates
+    supabase.channel('service_page_updates')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'service_tracking' }, () => {
+        loadData();
+      })
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'inventory' }, () => {
+        loadInventory();
+      })
+      .subscribe();
+
   </script>
 </body>
 </html>

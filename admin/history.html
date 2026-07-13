@@ -496,6 +496,14 @@
     };
 
     loadData();
+
+    // Realtime Updates
+    supabase.channel('history_page_updates')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'service_tracking' }, () => {
+        loadData();
+      })
+      .subscribe();
+
   </script>
 </body>
 </html>
