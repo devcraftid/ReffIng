@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kelola Harga - REFF INK Admin</title>
+  <title>Manajemen Stok - REFF INK Admin</title>
   <link rel="stylesheet" href="../src/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,10 +36,10 @@
       <a href="stok.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
         <i class="ph-bold ph-package text-xl"></i> Manajemen Stok
       </a>
-      <a href="layanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
-        <i class="ph-bold ph-list-dashes text-xl"></i> Kelola Layanan
+      <a href="layanan.html" class="flex items-center gap-3 px-3 py-3 rounded-lg bg-brand-light-blue text-white font-medium">
+        <i class="ph-bold ph-list-dashes text-xl"></i> Manajemen Stok
       </a>
-      <a href="harga.html" class="flex items-center gap-3 px-3 py-3 rounded-lg bg-brand-light-blue text-white font-medium">
+      <a href="harga.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
         <i class="ph-bold ph-currency-circle-dollar text-xl"></i> Kelola Harga
       </a>
       <a href="promo.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
@@ -78,7 +78,7 @@
         <button id="admin-mobile-menu-btn" class="md:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-lg transition">
           <i class="ph-bold ph-list text-2xl"></i>
         </button>
-        <h2 class="text-xl font-bold text-slate-800">Kelola Harga</h2>
+        <h2 class="text-xl font-bold text-slate-800">Manajemen Stok</h2>
       </div>
     </header>
 
@@ -88,36 +88,36 @@
 
         <!-- Form Tambah -->
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-8">
-          <h3 class="text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">Tambah Harga Baru</h3>
-          <form id="harga-form" class="space-y-4">
+          <h3 class="text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">Tambah Stok Baru</h3>
+          <form id="stok-form" class="space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1">Kategori</label>
-                <select id="kategori" required class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-light-blue">
-                  <option value="tinta">Isi Tinta & Toner</option>
-                  <option value="jasa">Jasa Service</option>
-                  <option value="sparepart">Sparepart Populer</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1">Nama Item / Layanan</label>
+                <label class="block text-sm font-semibold text-slate-700 mb-1">Nama Layanan</label>
                 <input type="text" id="nama" required class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-light-blue">
               </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1">Kapasitas / Estimasi Waktu (Cth: 100ml / 1 Jam)</label>
-                <input type="text" id="keterangan" required class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-light-blue">
-              </div>
-              <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1">Harga (Angka saja / Teks khusus spt Gratis)</label>
-                <input type="text" id="harga" required class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-light-blue">
+                <label class="block text-sm font-semibold text-slate-700 mb-1">Phosphor Icon Class (Cth: ph-drop)</label>
+                <input type="text" id="icon" required class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-light-blue">
               </div>
             </div>
-            
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-1">Deskripsi Singkat</label>
+              <textarea id="deskripsi" required rows="2" class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-light-blue"></textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-1">Upload Gambar Layanan (opsional)</label>
+              <div class="space-y-2">
+                <input type="file" id="image_file" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-light-blue/10 file:text-brand-light-blue hover:file:bg-brand-light-blue/20 cursor-pointer">
+                <input type="hidden" id="image_url">
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="is_unggulan" class="w-4 h-4 text-brand-blue">
+              <label for="is_unggulan" class="text-sm text-slate-700 font-medium">Tampilkan di Beranda (Layanan Unggulan)</label>
+            </div>
             <div class="flex justify-end pt-2">
               <button type="submit" id="save-btn" class="bg-brand-blue text-white px-6 py-2 rounded-lg font-bold hover:bg-slate-800 transition">
-                Simpan Harga
+                Simpan Layanan
               </button>
             </div>
           </form>
@@ -128,13 +128,22 @@
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse min-w-[800px]">
             <thead>
-              <tr class="bg-slate-100 text-slate-600 text-sm">
-                <th class="py-3 px-6 font-semibold">Kategori</th>
-                <th class="py-3 px-6 font-semibold">Nama Item</th>
-                <th class="py-3 px-6 font-semibold">Ket (Waktu/Kapasitas)</th>
-                <th class="py-3 px-6 font-semibold">Harga</th>
-                <th class="py-3 px-6 font-semibold text-center">Aksi</th>
+                              <tr class="bg-slate-100 text-slate-600 text-sm">
+                  <th class="py-3 px-6 font-semibold">Nama Barang</th>
+                  <th class="py-3 px-6 font-semibold">Kategori</th>
+                  <th class="py-3 px-6 font-semibold">Sisa Stok</th>
+                  <th class="py-3 px-6 font-semibold">Harga Satuan</th>
+                  <th class="py-3 px-6 font-semibold text-center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="table-body" class="divide-y divide-slate-100 text-slate-700 text-sm">
+              <tr>
+                <td colspan="5" class="py-6 text-center text-slate-400">Memuat data...</td>
               </tr>
+            </tbody>
+            </table>
+          </div>
+                </tr>
             </thead>
             <tbody id="table-body" class="divide-y divide-slate-100 text-slate-700 text-sm">
               <tr>
@@ -155,9 +164,10 @@
     
     document.getElementById('logout-btn').addEventListener('click', logoutAdmin);
     
-    const form = document.getElementById('harga-form');
+    const form = document.getElementById('stok-form');
     const tableBody = document.getElementById('table-body');
     const statusMsg = document.getElementById('status-message');
+    let currentEditId = null;
 
     function showStatus(msg, type) {
       statusMsg.textContent = msg;
@@ -168,68 +178,89 @@
     }
 
     async function loadData() {
-      const { data, error } = await supabase.from('pricing').select('*').order('kategori', { ascending: true });
-      if (error) {
-        tableBody.innerHTML = `<tr><td colspan="5" class="py-4 text-center text-red-500">Gagal memuat data</td></tr>`;
-        return;
-      }
+      tableBody.innerHTML = '<tr><td colspan="5" class="py-6 text-center text-slate-400">Memuat data...</td></tr>';
       
-      tableBody.innerHTML = '';
-      if(data.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="5" class="py-4 text-center text-slate-400">Belum ada data harga.</td></tr>`;
+      const { data, error } = await supabase.from('inventory').select('*').order('created_at', { ascending: false });
+      
+      if (error) {
+        tableBody.innerHTML = `<tr><td colspan="5" class="py-6 text-center text-red-500">Error: ${error.message}</td></tr>`;
         return;
       }
 
+      if (data.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="5" class="py-6 text-center text-slate-400">Belum ada data stok</td></tr>';
+        return;
+      }
+
+      tableBody.innerHTML = '';
       data.forEach(item => {
         const tr = document.createElement('tr');
-        tr.className = 'hover:bg-slate-50 transition';
-        const katLabel = item.kategori === 'tinta' ? 'Tinta' : item.kategori === 'jasa' ? 'Jasa Service' : 'Sparepart';
-        
+        tr.className = 'border-b border-slate-100 hover:bg-slate-50 transition';
         tr.innerHTML = `
-          <td class="py-3 px-6"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-semibold">${katLabel}</span></td>
-          <td class="py-3 px-6 font-bold text-slate-800">${item.nama}</td>
-          <td class="py-3 px-6 text-slate-500">${item.keterangan}</td>
-          <td class="py-3 px-6 font-semibold text-brand-blue">${item.harga}</td>
-          <td class="py-3 px-6 text-center">
-            <button onclick="window.deleteHarga(${item.id})" class="text-red-500 hover:text-red-700 bg-red-50 p-2 rounded-lg">
-              <i class="ph-bold ph-trash"></i>
-            </button>
+          <td class="py-4 px-6 font-medium text-slate-800">${item.nama_barang}</td>
+          <td class="py-4 px-6">
+            <span class="bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md text-xs font-semibold">${item.kategori}</span>
+          </td>
+          <td class="py-4 px-6">
+            <span class="${item.stok <= 5 ? 'text-red-500 font-bold' : 'text-slate-600 font-medium'}">${item.stok}</span>
+          </td>
+          <td class="py-4 px-6 text-slate-600">${item.harga_satuan ? 'Rp ' + item.harga_satuan : '-'}</td>
+          <td class="py-4 px-6">
+            <div class="flex justify-center gap-2">
+              <button onclick='window.editItem(${JSON.stringify(item).replace(/'/g, "&#39;")})' class="p-2 text-slate-400 hover:text-brand-blue hover:bg-blue-50 rounded-lg transition" title="Edit">
+                <i class="ph-bold ph-pencil-simple text-lg"></i>
+              </button>
+              <button onclick="window.deleteItem(${item.id})" class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition" title="Hapus">
+                <i class="ph-bold ph-trash text-lg"></i>
+              </button>
+            </div>
           </td>
         `;
         tableBody.appendChild(tr);
       });
     }
 
+    window.editItem = (item) => {
+      currentEditId = item.id;
+      document.getElementById('modal-title').textContent = 'Edit Stok';
+      
+      document.getElementById('form-nama').value = item.nama_barang;
+      document.getElementById('form-kategori').value = item.kategori;
+      document.getElementById('form-stok').value = item.stok;
+      document.getElementById('form-harga').value = item.harga_satuan || '';
+      
+      document.getElementById('stok-modal').classList.remove('hidden');
+    };
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      
       const payload = {
-        kategori: document.getElementById('kategori').value,
-        nama: document.getElementById('nama').value,
-        keterangan: document.getElementById('keterangan').value,
-        harga: document.getElementById('harga').value
+        nama_barang: document.getElementById('form-nama').value,
+        kategori: document.getElementById('form-kategori').value,
+        stok: parseInt(document.getElementById('form-stok').value),
+        harga_satuan: document.getElementById('form-harga').value
       };
 
-      const btn = document.getElementById('save-btn');
-      btn.disabled = true;
-      btn.textContent = 'Menyimpan...';
-
-      const { error } = await supabase.from('pricing').insert([payload]);
-      
-      btn.disabled = false;
-      btn.textContent = 'Simpan Harga';
-
-      if (error) {
-        showStatus('Gagal menyimpan: ' + error.message, 'error');
+      if (currentEditId) {
+        const { error } = await supabase.from('inventory').update(payload).eq('id', currentEditId);
+        if (error) showStatus('Gagal update: ' + error.message, 'error');
+        else showStatus('Data stok diperbarui!', 'success');
       } else {
-        showStatus('Data harga berhasil ditambahkan!', 'success');
-        form.reset();
-        loadData();
+        const { error } = await supabase.from('inventory').insert([payload]);
+        if (error) showStatus('Gagal menyimpan: ' + error.message, 'error');
+        else showStatus('Data stok berhasil ditambahkan!', 'success');
       }
+
+      form.reset();
+      currentEditId = null;
+      document.getElementById('stok-modal').classList.add('hidden');
+      loadData();
     });
 
-    window.deleteHarga = async (id) => {
-      if(!confirm('Yakin ingin menghapus harga ini?')) return;
-      const { error } = await supabase.from('pricing').delete().eq('id', id);
+    window.deleteItem = async (id) => {
+      if(!confirm('Yakin ingin menghapus data ini?')) return;
+      const { error } = await supabase.from('inventory').delete().eq('id', id);
       if(error) showStatus('Gagal menghapus: ' + error.message, 'error');
       else {
         showStatus('Data dihapus', 'success');

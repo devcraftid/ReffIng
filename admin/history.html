@@ -29,7 +29,7 @@
       
       <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mt-6 mb-2">Layanan & Harga</p>
       <a href="service.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
-        <i class="ph-bold ph-receipt text-xl"></i> Data Service Tracking
+        <i class="ph-bold ph-receipt text-xl"></i> Riwayat Service
       </a>
       <a href="history.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
         <i class="ph-bold ph-clock-counter-clockwise text-xl"></i> Riwayat Service
@@ -136,7 +136,7 @@
                     <div class="w-16 h-16 bg-slate-100 text-slate-300 rounded-full flex items-center justify-center mb-3">
                       <i class="ph-fill ph-receipt text-3xl"></i>
                     </div>
-                    <p class="font-medium text-slate-600">Belum ada data service tracking.</p>
+                    <p class="font-medium text-slate-600">Belum ada Riwayat Service.</p>
                     <p class="text-xs mt-1">Gunakan tombol "Tambah Data Baru" untuk memulai.</p>
                   </div>
                 </td>
@@ -262,27 +262,7 @@
         document.getElementById('tipe_printer').value = item.tipe_printer;
         document.getElementById('keluhan').value = item.keluhan;
         document.getElementById('status').value = item.status;
-                  document.getElementById('biaya').value = item.biaya || '0';
-          
-          // Reset inventory checkboxes
-          document.querySelectorAll('#inventory-list input[type="checkbox"]').forEach(cb => {
-            cb.checked = false;
-            document.getElementById('qty-' + cb.value).classList.add('hidden');
-            document.getElementById('qty-' + cb.value).value = 1;
-          });
-          
-          // Check items from JSON
-          if(item.spareparts_terpakai && Array.isArray(item.spareparts_terpakai)) {
-            item.spareparts_terpakai.forEach(sp => {
-              const cb = document.getElementById('inv-' + sp.id);
-              if(cb) {
-                cb.checked = true;
-                const qtyInput = document.getElementById('qty-' + sp.id);
-                qtyInput.classList.remove('hidden');
-                qtyInput.value = sp.qty;
-              }
-            });
-          }
+        document.getElementById('biaya').value = item.biaya || '0';
       } else {
         document.getElementById('modal-title').textContent = 'Tambah Data Service';
         form.reset();
@@ -374,52 +354,8 @@
       });
     }
 
-        let allInventory = [];
-
-    async function loadInventory() {
-      const { data, error } = await supabase.from('inventory').select('*').order('nama_barang', { ascending: true });
-      const container = document.getElementById('inventory-list');
-      if (error) {
-        container.innerHTML = <div class="text-xs text-red-500 p-2">Gagal memuat stok: </div>;
-        return;
-      }
-      
-      allInventory = data || [];
-      if (allInventory.length === 0) {
-        container.innerHTML = <div class="text-xs text-slate-400 p-2">Belum ada data barang di menu Stok.</div>;
-        return;
-      }
-      
-      container.innerHTML = '';
-      allInventory.forEach(inv => {
-        const div = document.createElement('div');
-        div.className = 'flex items-center gap-2 p-2 bg-white rounded-lg border border-slate-100 hover:border-brand-blue transition cursor-pointer';
-        
-        const isOutOfStock = inv.stok <= 0;
-        
-        div.innerHTML = 
-          <input type="checkbox" id="inv-" value="" class="w-4 h-4 text-brand-blue rounded border-slate-300 focus:ring-brand-light-blue" >
-          <label for="inv-" class="text-xs font-medium text-slate-700 flex-1 cursor-pointer select-none flex flex-col">
-            <span></span>
-            <span class="text-[10px] ">Stok:  | Rp </span>
-          </label>
-          <input type="number" id="qty-" value="1" min="1" max="" class="w-12 px-1 py-0.5 text-xs border border-slate-200 rounded focus:outline-none focus:border-brand-blue hidden" >
-        ;
-        
-        // Show/hide qty input when checked
-        const checkbox = div.querySelector(#inv-);
-        const qtyInput = div.querySelector(#qty-);
-        checkbox.addEventListener('change', (e) => {
-          if(e.target.checked) qtyInput.classList.remove('hidden');
-          else qtyInput.classList.add('hidden');
-        });
-        
-        container.appendChild(div);
-      });
-    }
-
     async function loadData() {
-      const { data, error } = await supabase.from('service_tracking').select('*').neq('status', 'Diambil').order('created_at', { ascending: false });
+      const { data, error } = await supabase.from('service_tracking').select('*').eq('status', 'Diambil').order('waktu_selesai', { ascending: false });
       if (error) {
         alert('Gagal memuat data: ' + error.message);
         return;
@@ -447,33 +383,15 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const id = document.getElementById('service-id').value;
-            const payload = {
+      const payload = {
         no_nota: document.getElementById('no_nota').value,
         nama_pelanggan: document.getElementById('nama_pelanggan').value,
         nomor_wa: document.getElementById('nomor_wa').value,
         tipe_printer: document.getElementById('tipe_printer').value,
         keluhan: document.getElementById('keluhan').value,
         status: document.getElementById('status').value,
-        biaya: document.getElementById('biaya').value,
-        teknisi: document.getElementById('teknisi').value
+        biaya: document.getElementById('biaya').value.replace(/[^0-9]/g, '')
       };
-      
-      // Collect checked inventory
-      const spareparts = [];
-      document.querySelectorAll('#inventory-list input[type="checkbox"]:checked').forEach(cb => {
-        const id = parseInt(cb.value);
-        const qty = parseInt(document.getElementById('qty-' + id).value) || 1;
-        const invItem = allInventory.find(i => i.id === id);
-        if(invItem) {
-          spareparts.push({
-            id: id,
-            qty: qty,
-            nama_barang: invItem.nama_barang,
-            harga: invItem.harga_satuan
-          });
-        }
-      });
-      payload.spareparts_terpakai = spareparts;
 
       const btn = document.getElementById('save-btn');
       btn.disabled = true;
@@ -496,7 +414,6 @@
       } else {
         closeModal();
         loadData();
-    loadInventory();
       }
     });
 
@@ -506,7 +423,6 @@
       const { error } = await supabase.from('service_tracking').delete().eq('id', id);
       if(error) alert('Gagal menghapus: ' + error.message);
       else loadData();
-    loadInventory();
     };
 
     window.updateStatusInline = async (id, newStatus) => {
@@ -515,11 +431,9 @@
         alert('Gagal mengubah status: ' + error.message);
       }
       loadData();
-    loadInventory();
     };
 
     loadData();
-    loadInventory();
   </script>
 </body>
 </html>
