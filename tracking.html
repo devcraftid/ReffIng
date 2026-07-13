@@ -183,23 +183,51 @@
     </div>
   </section>
 
-  <!-- Dummy script for simulation -->
-  <script>
-    document.getElementById('tracking-form').addEventListener('submit', function(e) {
+  <script type="module">
+    import { supabase } from './src/supabase.js';
+
+    document.getElementById('tracking-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const input = document.getElementById('nota-input').value.toUpperCase();
+      
+      const btn = this.querySelector('button[type="submit"]');
+      const originalBtnText = btn.innerHTML;
+      btn.innerHTML = '<i class="ph-bold ph-spinner animate-spin"></i> <span class="hidden md:inline">Mencari...</span>';
+      btn.disabled = true;
+
+      const input = document.getElementById('nota-input').value.trim();
       const errorMsg = document.getElementById('error-msg');
       const resultDiv = document.getElementById('tracking-result');
       
-      // Simulate fake tracking logic
-      if(input === 'RF-2607001' || input === 'TEST') {
+      try {
+        const { data, error } = await supabase
+          .from('service_tracking')
+          .select('*')
+          .ilike('no_nota', input)
+          .single();
+
+        if (error || !data) {
+          throw new Error('Nota tidak ditemukan');
+        }
+
+        // Display results
         errorMsg.classList.add('hidden');
         resultDiv.classList.remove('hidden');
         
-        // Let's simulate status "Sedang Diperbaiki"
-        const steps = [1, 2, 4]; // 1, 2, and 4 active
+        document.getElementById('res-nota').textContent = data.no_nota;
+        document.getElementById('res-printer').textContent = data.tipe_printer;
         
-        // Reset all steps to inactive first
+        // Map status to steps
+        const statusMap = {
+          'menunggu': [1],
+          'dicek': [1, 2],
+          'diperbaiki': [1, 2, 4],
+          'selesai': [1, 2, 4, 5],
+          'diambil': [1, 2, 4, 5, 6]
+        };
+        
+        const activeSteps = statusMap[data.status.toLowerCase()] || [1];
+        
+        // Reset all steps
         [1,2,3,4,5,6].forEach(i => {
           const el = document.getElementById('step-'+i);
           if(el) {
@@ -210,13 +238,13 @@
         });
         
         // Set active steps
-        steps.forEach((step, idx) => {
+        activeSteps.forEach((step, idx) => {
           const el = document.getElementById('step-'+step);
           if(el) {
             el.classList.remove('opacity-40');
             const icon = el.querySelector('.step-icon');
             
-            if(idx === steps.length - 1) {
+            if(idx === activeSteps.length - 1) {
               // Current active step - blue
               icon.className = 'w-12 h-12 rounded-full flex items-center justify-center shrink-0 step-icon bg-brand-light-blue text-white shadow-lg shadow-brand-light-blue/30 scale-110 transition';
             } else {
@@ -225,11 +253,16 @@
             }
           }
         });
-      } else {
+
+      } catch (err) {
         errorMsg.classList.remove('hidden');
         resultDiv.classList.add('hidden');
+      } finally {
+        btn.innerHTML = originalBtnText;
+        btn.disabled = false;
       }
     });
   </script>
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>

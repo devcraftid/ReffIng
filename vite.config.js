@@ -13,13 +13,19 @@ export default defineConfig({
         harga: './harga.html',
         promo: './promo.html',
         tracking: './tracking.html',
+        galeri: './galeri.html',
+        tentang: './tentang.html',
+        faq: './faq.html',
         admin: './admin/index.html',
         adminLogin: './admin/login.html',
         adminService: './admin/service.html',
         adminPengaturan: './admin/pengaturan.html',
         adminLayanan: './admin/layanan.html',
         adminHarga: './admin/harga.html',
-        adminPromo: './admin/promo.html'
+        adminPromo: './admin/promo.html',
+        adminGaleri: './admin/galeri.html',
+        adminFaq: './admin/faq.html',
+        adminTestimoni: './admin/testimoni.html'
       }
     }
   }

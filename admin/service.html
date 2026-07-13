@@ -295,14 +295,29 @@
       }
 
       data.forEach((item, index) => {
-        const badgeColors = {
-          'menunggu': 'bg-slate-100 text-slate-600',
-          'dicek': 'bg-yellow-100 text-yellow-700',
-          'diperbaiki': 'bg-blue-100 text-blue-700',
-          'selesai': 'bg-green-100 text-green-700',
-          'diambil': 'bg-purple-100 text-purple-700'
-        };
-        const statusBadge = `<span class="px-2 py-1 rounded text-xs font-bold ${badgeColors[item.status] || 'bg-slate-100'}">${item.status.toUpperCase()}</span>`;
+        const statusOptions = [
+          { value: 'menunggu', label: 'MENUNGGU', color: 'bg-slate-100 text-slate-600' },
+          { value: 'dicek', label: 'DICEK', color: 'bg-yellow-100 text-yellow-700' },
+          { value: 'diperbaiki', label: 'DIPERBAIKI', color: 'bg-blue-100 text-blue-700' },
+          { value: 'selesai', label: 'SELESAI', color: 'bg-green-100 text-green-700' },
+          { value: 'diambil', label: 'DIAMBIL', color: 'bg-purple-100 text-purple-700' }
+        ];
+
+        let optionsHtml = '';
+        let currentColorClass = 'bg-slate-100 text-slate-600';
+        statusOptions.forEach(opt => {
+          if(opt.value === item.status) currentColorClass = opt.color;
+          optionsHtml += `<option value="${opt.value}" ${opt.value === item.status ? 'selected' : ''} class="bg-white text-slate-800 font-medium">${opt.label}</option>`;
+        });
+
+        const statusSelect = `
+          <select 
+            onchange="window.updateStatusInline(${item.id}, this.value)"
+            class="px-2 py-1.5 rounded text-xs font-bold focus:outline-none focus:ring-2 focus:ring-brand-light-blue/50 cursor-pointer border-none shadow-sm ${currentColorClass}"
+          >
+            ${optionsHtml}
+          </select>
+        `;
         
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-slate-50 transition';
@@ -316,7 +331,7 @@
             <div class="font-semibold text-slate-700">${item.tipe_printer}</div>
             <div class="text-xs text-slate-500 max-w-[200px] truncate" title="${item.keluhan}">${item.keluhan}</div>
           </td>
-          <td class="px-6 py-4">${statusBadge}</td>
+          <td class="px-6 py-4">${statusSelect}</td>
           <td class="px-6 py-4 font-medium text-slate-700">Rp ${Number(item.biaya || 0).toLocaleString('id-ID')}</td>
           <td class="px-6 py-4 text-center">
             <div class="flex justify-center gap-2">
@@ -402,6 +417,14 @@
       const { error } = await supabase.from('service_tracking').delete().eq('id', id);
       if(error) alert('Gagal menghapus: ' + error.message);
       else loadData();
+    };
+
+    window.updateStatusInline = async (id, newStatus) => {
+      const { error } = await supabase.from('service_tracking').update({ status: newStatus }).eq('id', id);
+      if (error) {
+        alert('Gagal mengubah status: ' + error.message);
+      }
+      loadData();
     };
 
     loadData();
