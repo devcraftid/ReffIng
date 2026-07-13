@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengaturan Website - REFF INK Admin</title>
+  <link rel="stylesheet" href="../src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans flex h-screen overflow-hidden">
+
+  <!-- Sidebar -->
+  <div id="admin-sidebar-overlay" class="fixed inset-0 bg-slate-900/50 z-20 hidden md:hidden backdrop-blur-sm transition-opacity"></div>
+  <aside id="admin-sidebar" class="w-64 bg-slate-900 text-slate-300 flex flex-col h-full shrink-0 transition-transform duration-300 fixed md:relative z-30 -translate-x-full md:translate-x-0">
+    <div class="h-20 flex items-center px-6 border-b border-slate-800 shrink-0">
+      <a href="index.html" class="text-xl font-bold text-white flex items-center gap-2">
+        <i class="ph-fill ph-printer text-brand-light-blue"></i> REFF INK Admin
+      </a>
+    </div>
+    
+    <div class="flex-1 overflow-y-auto py-4 px-3 space-y-1 custom-scrollbar">
+      <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-squares-four text-xl"></i> Dashboard
+      </a>
+      
+      <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mt-6 mb-2">Layanan & Harga</p>
+      <a href="service.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-receipt text-xl"></i> Data Service Tracking
+      </a>
+      <a href="layanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-list-dashes text-xl"></i> Kelola Layanan
+      </a>
+      <a href="harga.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-currency-circle-dollar text-xl"></i> Kelola Harga
+      </a>
+      <a href="promo.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-ticket text-xl"></i> Kelola Promo
+      </a>
+      
+      <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mt-6 mb-2">Informasi Publik</p>
+      <a href="galeri.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-images text-xl"></i> Kelola Galeri
+      </a>
+      <a href="faq.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-question text-xl"></i> Kelola FAQ
+      </a>
+      <a href="testimoni.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-star text-xl"></i> Kelola Testimoni
+      </a>
+
+      <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mt-6 mb-2">Pengaturan</p>
+      <a href="pengaturan.html" class="flex items-center gap-3 px-3 py-3 rounded-lg bg-brand-light-blue text-white font-medium">
+        <i class="ph-bold ph-gear text-xl"></i> Pengaturan Web
+      </a>
+    </div>
+
+    <div class="p-4 border-t border-slate-800 shrink-0">
+      <button id="logout-btn" class="w-full text-left text-sm text-red-400 hover:text-red-300 flex items-center gap-2 transition">
+        <i class="ph-bold ph-sign-out"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col h-full overflow-hidden">
+    <!-- Topbar -->
+    <header class="h-20 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-8 shrink-0">
+      <div class="flex items-center gap-3">
+        <button id="admin-mobile-menu-btn" class="md:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-lg transition">
+          <i class="ph-bold ph-list text-2xl"></i>
+        </button>
+        <h2 class="text-xl font-bold text-slate-800">Pengaturan Web</h2>
+      </div>
+    </header>
+
+    <!-- Content area -->
+    <div class="flex-1 overflow-y-auto p-8 bg-slate-50">
+      
+      <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+        
+        <div id="status-message" class="hidden mb-6 p-4 rounded-xl text-sm font-medium"></div>
+
+        <form id="settings-form" class="space-y-8">
+          
+          <!-- Informasi Umum -->
+          <div>
+            <h3 class="text-lg font-bold text-slate-800 border-b border-slate-100 pb-3 mb-6 flex items-center gap-2">
+              <i class="ph-bold ph-storefront"></i> Identitas & Kontak
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Toko</label>
+                <input type="text" id="nama_toko" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-brand-light-blue focus:ring-2 focus:ring-brand-light-blue/20 transition">
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Upload Logo Toko</label>
+                <div class="space-y-2">
+                  <input type="file" id="logo_file" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-light-blue/10 file:text-brand-light-blue hover:file:bg-brand-light-blue/20 cursor-pointer">
+                  <input type="hidden" id="logo_url">
+                  <p class="text-xs text-slate-500 italic">Biarkan kosong jika tidak ingin mengubah logo saat ini.</p>
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Nomor WhatsApp (Contoh: 62812...)</label>
+                <input type="text" id="nomor_wa" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-brand-light-blue focus:ring-2 focus:ring-brand-light-blue/20 transition">
+              </div>
+            </div>
+
+            <div class="mt-6">
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Alamat Lengkap</label>
+              <textarea id="alamat" rows="2" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-brand-light-blue focus:ring-2 focus:ring-brand-light-blue/20 transition"></textarea>
+            </div>
+            
+            <div class="mt-6">
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Deskripsi "Tentang Kami" (Untuk Footer)</label>
+              <textarea id="tentang_kami" rows="4" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-brand-light-blue focus:ring-2 focus:ring-brand-light-blue/20 transition"></textarea>
+            </div>
+          </div>
+
+          <!-- Hero Banner Section -->
+          <div>
+            <h3 class="text-lg font-bold text-slate-800 border-b border-slate-100 pb-3 mb-6 flex items-center gap-2">
+              <i class="ph-bold ph-image"></i> Hero Banner (Halaman Depan)
+            </h3>
+            
+            <div class="space-y-6">
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Judul Utama (Gunakan tag &lt;br&gt; untuk enter, &lt;span class="text-brand-cyan"&gt; untuk warna khusus)</label>
+                <textarea id="banner_title" rows="2" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl font-mono text-sm focus:outline-none focus:border-brand-light-blue focus:ring-2 focus:ring-brand-light-blue/20 transition"></textarea>
+                <p class="text-xs text-slate-500 mt-1">Contoh: Solusi Cepat untuk &lt;br/&gt;&lt;span class="text-brand-cyan"&gt;Printer & Tinta&lt;/span&gt; Anda</p>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Subjudul (Deskripsi di bawah judul utama)</label>
+                <textarea id="banner_subtitle" rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-brand-light-blue focus:ring-2 focus:ring-brand-light-blue/20 transition"></textarea>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Upload Gambar Banner Utama</label>
+                <div class="space-y-2">
+                  <input type="file" id="banner_file" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-light-blue/10 file:text-brand-light-blue hover:file:bg-brand-light-blue/20 cursor-pointer">
+                  <input type="hidden" id="banner_image_url">
+                  <p class="text-xs text-slate-500 italic">Biarkan kosong jika tidak ingin mengubah banner saat ini.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Keunggulan & CTA -->
+          <div>
+            <h3 class="text-lg font-bold text-slate-800 border-b border-slate-100 pb-3 mb-6 flex items-center gap-2">
+              <i class="ph-bold ph-star"></i> Keunggulan & CTA
+            </h3>
+            
+            <div class="space-y-6">
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Deskripsi Singkat "Mengapa Pelanggan Memilih Kami?"</label>
+                <textarea id="keunggulan_teks" rows="2" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-brand-light-blue focus:ring-2 focus:ring-brand-light-blue/20 transition"></textarea>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Teks Call to Action (Printer Anda Bermasalah?)</label>
+                <textarea id="cta_teks" rows="2" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-brand-light-blue focus:ring-2 focus:ring-brand-light-blue/20 transition"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-slate-100 flex justify-end">
+            <button type="submit" id="save-btn" class="bg-brand-blue text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 transition flex items-center gap-2">
+              <i class="ph-bold ph-floppy-disk"></i> Simpan Semua Pengaturan
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <script type="module">
+    import { supabase } from '../src/supabase.js';
+    import { logoutAdmin } from '../src/auth.js';
+    
+    // Setup Logout Button
+    document.getElementById('logout-btn').addEventListener('click', logoutAdmin);
+
+    const form = document.getElementById('settings-form');
+    const statusMsg = document.getElementById('status-message');
+    const saveBtn = document.getElementById('save-btn');
+
+    // Load data from Supabase
+    async function loadData() {
+      try {
+        saveBtn.disabled = true;
+        saveBtn.innerHTML = '<i class="ph-bold ph-spinner animate-spin"></i> Memuat...';
+        
+        const { data, error } = await supabase
+          .from('website_settings')
+          .select('*')
+          .eq('id', 1)
+          .maybeSingle();
+          
+        if (error && error.code !== 'PGRST116') throw error;
+
+        if (data) {
+          document.getElementById('nama_toko').value = data.nama_toko || '';
+          document.getElementById('logo_url').value = data.logo_url || '';
+          document.getElementById('nomor_wa').value = data.nomor_wa || '';
+          document.getElementById('alamat').value = data.alamat || '';
+          document.getElementById('tentang_kami').value = data.tentang_kami || '';
+          
+          document.getElementById('banner_title').value = data.banner_title || '';
+          document.getElementById('banner_subtitle').value = data.banner_subtitle || '';
+          document.getElementById('banner_image_url').value = data.banner_image_url || '';
+          
+          document.getElementById('keunggulan_teks').value = data.keunggulan_teks || '';
+          document.getElementById('cta_teks').value = data.cta_teks || '';
+        }
+      } catch (err) {
+        console.error("Gagal memuat pengaturan: ", err.message);
+        showStatus('Gagal memuat data. Pastikan koneksi Supabase & tabel sudah benar.', 'error');
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<i class="ph-bold ph-floppy-disk"></i> Simpan Semua Pengaturan';
+      }
+    }
+
+    // Helper to upload image
+    async function uploadImage(file, pathPrefix) {
+      if (!file) return null;
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${pathPrefix}-${Date.now()}.${fileExt}`;
+      
+      const { error: uploadError } = await supabase.storage.from('public_images').upload(fileName, file);
+      if (uploadError) throw uploadError;
+      
+      const { data } = supabase.storage.from('public_images').getPublicUrl(fileName);
+      return data.publicUrl;
+    }
+
+    // Save Data
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      try {
+        saveBtn.disabled = true;
+        saveBtn.innerHTML = '<i class="ph-bold ph-spinner animate-spin"></i> Menyimpan...';
+
+        let finalLogoUrl = document.getElementById('logo_url').value;
+        const logoFile = document.getElementById('logo_file').files[0];
+        if (logoFile) {
+          finalLogoUrl = await uploadImage(logoFile, 'logo');
+          document.getElementById('logo_url').value = finalLogoUrl;
+        }
+
+        let finalBannerUrl = document.getElementById('banner_image_url').value;
+        const bannerFile = document.getElementById('banner_file').files[0];
+        if (bannerFile) {
+          finalBannerUrl = await uploadImage(bannerFile, 'banner');
+          document.getElementById('banner_image_url').value = finalBannerUrl;
+        }
+        
+        const payload = {
+          id: 1,
+          nama_toko: document.getElementById('nama_toko').value,
+          logo_url: finalLogoUrl,
+          nomor_wa: document.getElementById('nomor_wa').value,
+          alamat: document.getElementById('alamat').value,
+          tentang_kami: document.getElementById('tentang_kami').value,
+          
+          banner_title: document.getElementById('banner_title').value,
+          banner_subtitle: document.getElementById('banner_subtitle').value,
+          banner_image_url: finalBannerUrl,
+          
+          keunggulan_teks: document.getElementById('keunggulan_teks').value,
+          cta_teks: document.getElementById('cta_teks').value,
+        };
+        
+        const { error } = await supabase
+          .from('website_settings')
+          .upsert(payload);
+
+        if (error) throw error;
+        
+        showStatus('Pengaturan berhasil disimpan!', 'success');
+      } catch (err) {
+        console.error("Gagal menyimpan: ", err.message);
+        showStatus('Gagal menyimpan data: ' + err.message, 'error');
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<i class="ph-bold ph-floppy-disk"></i> Simpan Semua Pengaturan';
+      }
+    });
+
+    function showStatus(msg, type) {
+      statusMsg.textContent = msg;
+      statusMsg.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+      
+      if(type === 'success') {
+        statusMsg.classList.add('bg-green-100', 'text-green-700');
+      } else {
+        statusMsg.classList.add('bg-red-100', 'text-red-700');
+      }
+      
+      setTimeout(() => {
+        statusMsg.classList.add('hidden');
+      }, 5000);
+    }
+
+    // Initialize
+    loadData();
+  </script>
+</body>
+</html>

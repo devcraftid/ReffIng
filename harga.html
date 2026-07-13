@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harga - REFF INK</title>
+  <link rel="stylesheet" href="./src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- Navbar -->
+  <nav class="fixed w-full z-50 glassmorphism transition-all duration-300 shadow-sm bg-white/90" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20 items-center">
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-brand-blue to-brand-light-blue bg-clip-text text-transparent flex items-center gap-2">
+            <i class="ph-fill ph-printer text-brand-light-blue"></i>
+            REFF INK
+          </a>
+        </div>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-8 items-center">
+          <a href="index.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Beranda</a>
+          <a href="layanan.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Layanan</a>
+          <a href="harga.html" class="text-brand-blue font-semibold hover:text-brand-light-blue transition">Harga</a>
+          <a href="galeri.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Galeri</a>
+          <a href="promo.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Promo</a>
+          <a href="tentang.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Tentang Kami</a>
+          <a href="faq.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">FAQ</a>
+          <a href="admin/login.html" class="text-slate-400 hover:text-brand-light-blue transition ml-2" title="Login Admin"><i class="ph-bold ph-lock-key text-xl"></i></a>
+          
+          <a href="#" target="_blank" class="dynamic-wa-link bg-brand-light-blue text-white px-5 py-2.5 rounded-full font-medium hover:bg-brand-blue transition hover-lift flex items-center gap-2 shadow-lg shadow-brand-light-blue/30">
+            <i class="ph ph-whatsapp-logo text-xl"></i>
+            Hubungi Kami
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-blue focus:outline-none">
+            <i class="ph ph-list text-3xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-xl">
+      <div class="px-4 pt-2 pb-6 space-y-1">
+        <a href="index.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Beranda</a>
+        <a href="layanan.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Layanan</a>
+        <a href="harga.html" class="block px-3 py-3 text-brand-blue font-semibold bg-slate-50 rounded-lg">Harga</a>
+        <a href="galeri.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Galeri</a>
+        <a href="promo.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Promo</a>
+        <a href="tentang.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Tentang Kami</a>
+        <a href="faq.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">FAQ</a>
+        <a href="tracking.html" class="block px-3 py-3 text-brand-light-blue font-medium hover:bg-slate-50 rounded-lg border border-brand-light-blue mt-2 text-center">Lacak Service</a>
+        <a href="admin/login.html" class="block px-3 py-3 text-slate-400 font-medium hover:bg-slate-50 rounded-lg flex items-center gap-2"><i class="ph-bold ph-lock-key"></i> Login Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="pt-32 pb-16 bg-gradient-to-br from-brand-blue to-slate-900 text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 opacity-30 blur-[80px] animate-blob">
+      <div class="w-96 h-96 bg-brand-light-blue rounded-[40%_60%_70%_30%] mix-blend-overlay"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Daftar Harga</h1>
+      <p class="text-slate-300 max-w-2xl mx-auto text-lg">Transparan, Terjangkau, dan Berkualitas. Harga terbaik untuk printer kesayangan Anda.</p>
+    </div>
+  </section>
+
+  <!-- Pricing Tables -->
+  <section class="py-20 bg-slate-50 relative overflow-hidden">
+    <!-- Fluid background shapes -->
+    <div class="absolute top-40 left-0 -translate-x-1/2 opacity-20 blur-[100px] animate-blob animation-delay-2000 pointer-events-none">
+      <div class="w-[30rem] h-[30rem] bg-brand-cyan rounded-[60%_40%_30%_70%] mix-blend-multiply"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Harga Isi Tinta -->
+      <div class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-12 h-12 bg-blue-100 text-brand-light-blue rounded-xl flex items-center justify-center">
+            <i class="ph-fill ph-paint-bucket text-2xl"></i>
+          </div>
+          <h2 class="text-3xl font-bold text-brand-blue">Harga Isi Ulang Tinta & Toner</h2>
+        </div>
+        
+        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-100 text-slate-600">
+                <th class="py-4 px-6 font-semibold">Layanan / Tipe Tinta</th>
+                <th class="py-4 px-6 font-semibold">Kapasitas</th>
+                <th class="py-4 px-6 font-semibold text-right">Harga Mulai (Rp)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700" id="pub_harga_tinta_container">
+              <!-- Dynamic pricing injected here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Harga Service -->
+      <div class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-12 h-12 bg-blue-100 text-brand-light-blue rounded-xl flex items-center justify-center">
+            <i class="ph-fill ph-wrench text-2xl"></i>
+          </div>
+          <h2 class="text-3xl font-bold text-brand-blue">Harga Jasa Service Printer</h2>
+        </div>
+        
+        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-100 text-slate-600">
+                <th class="py-4 px-6 font-semibold">Jenis Kerusakan / Layanan</th>
+                <th class="py-4 px-6 font-semibold">Estimasi Waktu</th>
+                <th class="py-4 px-6 font-semibold text-right">Harga Mulai (Rp)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700" id="pub_harga_service_container">
+              <!-- Dynamic pricing injected here -->
+            </tbody>
+          </table>
+          <div class="p-4 bg-slate-50 text-sm text-slate-500 italic">
+            * Pengecekan gratis jika dilanjutkan dengan perbaikan. Harga di atas adalah harga jasa, belum termasuk penggantian sparepart (jika ada).
+          </div>
+        </div>
+      </div>
+
+      <!-- Harga Sparepart Populer -->
+      <div class="mb-12">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-12 h-12 bg-blue-100 text-brand-light-blue rounded-xl flex items-center justify-center">
+            <i class="ph-fill ph-cpu text-2xl"></i>
+          </div>
+          <h2 class="text-3xl font-bold text-brand-blue">Estimasi Harga Sparepart Populer</h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="pub_harga_sparepart_container">
+          <!-- Dynamic spareparts injected here -->
+        </div>
+        <p class="mt-6 text-center text-slate-500 text-sm">Harga sparepart dapat berubah sewaktu-waktu mengikuti harga pasar. Silakan hubungi kami untuk kepastian harga.</p>
+      </div>
+      
+      <!-- CTA Consult -->
+      <div class="bg-gradient-to-r from-brand-blue to-brand-light-blue rounded-[3rem_2rem_4rem_1rem] p-10 text-center text-white shadow-xl relative overflow-hidden group">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 group-hover:scale-110 transition-transform duration-1000"></div>
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-xl group-hover:bg-white/20 transition-colors"></div>
+        <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-white/10 rounded-full blur-xl group-hover:bg-brand-cyan/20 transition-colors"></div>
+        
+        <h3 class="text-3xl font-bold mb-4 relative z-10">Ingin Mengetahui Estimasi Biaya?</h3>
+        <p class="text-blue-100 mb-8 max-w-2xl mx-auto relative z-10">Jelaskan kerusakan printer Anda, atau sebutkan sparepart yang dicari. Tim kami akan memberikan estimasi biaya secara gratis.</p>
+        <a href="#" data-wa-text="Halo REFF INK, saya ingin konsultasi estimasi biaya service" target="_blank" class="dynamic-wa-link bg-white text-brand-blue px-8 py-3.5 rounded-[1.5rem_0.5rem_1.5rem_0.5rem] font-bold hover:bg-slate-100 transition hover-lift inline-flex items-center gap-2 relative z-10 hover:-rotate-1">
+          <i class="ph-fill ph-whatsapp-logo text-green-500 text-2xl"></i> Konsultasi Harga via WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="./src/main.js" type="module"></script>
+</body>
+</html>

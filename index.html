@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REFF INK - Layanan Service Printer & Isi Tinta Profesional</title>
+  <meta name="description" content="Layanan isi ulang tinta, service printer, dan perawatan printer terbaik. Kami mengatasi masalah printer Anda dengan cepat dan bergaransi.">
+  <link rel="stylesheet" href="./src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Phosphor Icons for modern icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- Navbar -->
+  <nav class="fixed w-full z-50 glassmorphism transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20 items-center">
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <a href="/" class="text-2xl font-bold bg-gradient-to-r from-brand-blue to-brand-light-blue bg-clip-text text-transparent flex items-center gap-2" id="pub_logo_container">
+            <i class="ph-fill ph-printer text-brand-light-blue" id="pub_logo_icon"></i>
+            <span id="pub_logo_text">REFF INK</span>
+          </a>
+        </div>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-8 items-center">
+          <a href="index.html" class="text-brand-blue font-semibold hover:text-brand-light-blue transition">Beranda</a>
+          <a href="layanan.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Layanan</a>
+          <a href="harga.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Harga</a>
+          <a href="galeri.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Galeri</a>
+          <a href="promo.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Promo</a>
+          <a href="tentang.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Tentang Kami</a>
+          <a href="faq.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">FAQ</a>
+          <a href="admin/login.html" class="text-slate-400 hover:text-brand-light-blue transition ml-2" title="Login Admin"><i class="ph-bold ph-lock-key text-xl"></i></a>
+          
+          <a href="#" target="_blank" class="dynamic-wa-link bg-brand-light-blue text-white px-5 py-2.5 rounded-full font-medium hover:bg-brand-blue transition hover-lift flex items-center gap-2 shadow-lg shadow-brand-light-blue/30">
+            <i class="ph ph-whatsapp-logo text-xl"></i>
+            Hubungi Kami
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-blue focus:outline-none">
+            <i class="ph ph-list text-3xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-xl">
+      <div class="px-4 pt-2 pb-6 space-y-1">
+        <a href="index.html" class="block px-3 py-3 text-brand-blue font-semibold bg-slate-50 rounded-lg">Beranda</a>
+        <a href="layanan.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Layanan</a>
+        <a href="harga.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Harga</a>
+        <a href="galeri.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Galeri</a>
+        <a href="promo.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Promo</a>
+        <a href="tentang.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Tentang Kami</a>
+        <a href="faq.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">FAQ</a>
+        <a href="tracking.html" class="block px-3 py-3 text-brand-light-blue font-medium hover:bg-slate-50 rounded-lg border border-brand-light-blue mt-2 text-center">Lacak Service</a>
+        <a href="admin/login.html" class="block px-3 py-3 text-slate-400 font-medium hover:bg-slate-50 rounded-lg flex items-center gap-2"><i class="ph-bold ph-lock-key"></i> Login Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-50 to-blue-50 -z-10"></div>
+    <!-- Decorative background elements -->
+    <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 opacity-30 -z-10 blur-[100px] animate-blob">
+      <div class="w-96 h-96 bg-brand-cyan rounded-[40%_60%_70%_30%] mix-blend-multiply"></div>
+    </div>
+    <div class="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 opacity-30 -z-10 blur-[100px] animate-blob animation-delay-2000">
+      <div class="w-[30rem] h-[30rem] bg-brand-light-blue rounded-[60%_40%_30%_70%] mix-blend-multiply"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-light-blue/10 text-brand-light-blue font-semibold text-sm mb-6 border border-brand-light-blue/20">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-light-blue opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-light-blue"></span>
+            </span>
+            Buka Hari Ini: 08:00 - 17:00
+          </div>
+          <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-6 text-brand-blue" id="pub_banner_title">
+            <!-- Dynamic Title -->
+          </h1>
+          <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0" id="pub_banner_subtitle">
+            <!-- Dynamic Subtitle -->
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="layanan.html" class="bg-brand-blue text-white px-8 py-3.5 rounded-full font-medium hover:bg-slate-800 transition hover-lift flex items-center justify-center gap-2">
+              Lihat Layanan
+              <i class="ph-bold ph-arrow-right"></i>
+            </a>
+            <a href="tracking.html" class="bg-white text-brand-blue border border-slate-200 px-8 py-3.5 rounded-full font-medium hover:border-brand-blue hover:text-brand-light-blue transition hover-lift flex items-center justify-center gap-2">
+              <i class="ph-bold ph-magnifying-glass"></i>
+              Tracking Service
+            </a>
+          </div>
+        </div>
+        
+        <div class="relative hidden lg:block animate-float">
+          <div class="absolute inset-0 bg-gradient-to-tr from-brand-light-blue to-brand-cyan rounded-[3rem_2rem_4rem_1rem] transform rotate-6 scale-105 opacity-20 blur-2xl"></div>
+          <img src="" id="pub_banner_image" alt="Printer Service" class="relative rounded-[2rem_1rem_4rem_2rem] shadow-[0_20px_50px_rgba(8,_112,_184,_0.2)] object-cover h-[500px] w-full border border-white/60 bg-slate-200">
+          
+          <!-- Floating Badge -->
+          <div class="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-md border border-white/50 p-4 rounded-[1.5rem_1rem_1.5rem_0.5rem] shadow-xl flex items-center gap-4 animate-float" style="animation-delay: 1s;">
+            <div class="bg-green-100 p-3 rounded-full text-green-600">
+              <i class="ph-fill ph-check-circle text-3xl"></i>
+            </div>
+            <div>
+              <p class="text-sm text-slate-500 font-medium">Garansi Service</p>
+              <p class="text-brand-blue font-bold text-lg">100% Terjamin</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layanan Unggulan -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-brand-light-blue font-semibold tracking-wide uppercase text-sm mb-2">Layanan Kami</h2>
+        <h3 class="text-3xl md:text-4xl font-bold text-gradient pb-1">Apa yang bisa kami bantu?</h3>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8" id="pub_layanan_unggulan_container">
+        <!-- Dynamic services injected here -->
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="layanan.html" class="inline-flex items-center gap-2 text-brand-blue font-semibold hover:text-brand-light-blue transition px-6 py-3 border-2 border-slate-200 hover:border-brand-light-blue rounded-full">
+          Lihat Semua Layanan <i class="ph-bold ph-list-plus"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kenapa Memilih Kami -->
+  <section class="py-20 bg-brand-blue text-white overflow-hidden relative">
+    <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-brand-cyan font-semibold tracking-wide uppercase text-sm mb-2">Keunggulan REFF INK</h2>
+          <h3 class="text-3xl md:text-4xl font-bold mb-6">Mengapa Pelanggan Memilih Kami?</h3>
+          <p class="text-slate-300 mb-8" id="pub_keunggulan_teks"><!-- Dynamic text --></p>
+          
+          <div id="pub_keunggulan_list" class="space-y-6">
+            <!-- Dynamic Keunggulan List -->
+          </div>
+        </div>
+        
+        <div id="pub_keunggulan_media" class="grid grid-cols-2 gap-4">
+          <!-- Dynamic Keunggulan Media -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-24 bg-gradient-to-br from-brand-light-blue via-brand-blue to-blue-800 text-white text-center relative overflow-hidden">
+    <!-- Abstract Shapes -->
+    <div class="absolute top-0 right-0 -translate-y-12 translate-x-12 opacity-20 animate-float">
+      <div class="w-64 h-64 border-[16px] border-white rounded-full mix-blend-overlay"></div>
+    </div>
+    <div class="absolute bottom-0 left-0 translate-y-12 -translate-x-12 opacity-10 animate-blob">
+      <div class="w-48 h-48 bg-white rounded-full mix-blend-overlay"></div>
+    </div>
+    
+    <div class="max-w-4xl mx-auto px-4 relative z-10">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Printer Anda Bermasalah?</h2>
+      <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto" id="pub_cta_teks"><!-- Dynamic CTA --></p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#" target="_blank" class="dynamic-wa-link bg-white text-brand-blue px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition hover-lift flex items-center justify-center gap-2 shadow-2xl">
+          <i class="ph-fill ph-whatsapp-logo text-green-500 text-2xl"></i>
+          Konsultasi via WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 pt-16 pb-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        
+        <!-- Brand -->
+        <div class="lg:col-span-1">
+          <a href="/" class="text-2xl font-bold text-white flex items-center gap-2 mb-6">
+            <i class="ph-fill ph-printer text-brand-light-blue"></i>
+            <span id="pub_nama_toko"></span>
+          </a>
+          <p class="text-sm leading-relaxed mb-6" id="pub_tentang_kami">
+            
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-white hover:bg-brand-light-blue transition"><i class="ph-fill ph-facebook-logo"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-white hover:bg-brand-light-blue transition"><i class="ph-fill ph-instagram-logo"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-white hover:bg-brand-light-blue transition"><i class="ph-fill ph-tiktok-logo"></i></a>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <h4 class="text-white font-semibold mb-6">Menu Cepat</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="layanan.html" class="hover:text-white transition">Layanan</a></li>
+            <li><a href="harga.html" class="hover:text-white transition">Daftar Harga</a></li>
+            <li><a href="promo.html" class="hover:text-white transition">Promo Spesial</a></li>
+            <li><a href="tracking.html" class="hover:text-white transition">Cek Status Service</a></li>
+            <li><a href="faq.html" class="hover:text-white transition">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Jam Buka -->
+        <div>
+          <h4 class="text-white font-semibold mb-6">Jam Operasional</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex justify-between border-b border-slate-800 pb-2">
+              <span>Senin - Jumat</span>
+              <span class="text-white">08:00 - 17:00</span>
+            </li>
+            <li class="flex justify-between border-b border-slate-800 pb-2">
+              <span>Sabtu</span>
+              <span class="text-white">08:00 - 15:00</span>
+            </li>
+            <li class="flex justify-between border-b border-slate-800 pb-2">
+              <span>Minggu</span>
+              <span class="text-red-400">Tutup</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Kontak -->
+        <div>
+          <h4 class="text-white font-semibold mb-6">Hubungi Kami</h4>
+          <ul class="space-y-4 text-sm">
+            <li class="flex gap-3 items-start">
+              <i class="ph-fill ph-map-pin text-brand-light-blue text-lg shrink-0 mt-0.5"></i>
+              <span id="pub_alamat"></span>
+            </li>
+            <li class="flex gap-3 items-center">
+              <i class="ph-fill ph-whatsapp-logo text-brand-light-blue text-lg shrink-0"></i>
+              <span class="text-white" id="pub_nomor_wa"></span>
+            </li>
+            <li class="flex gap-3 items-center">
+              <i class="ph-fill ph-envelope-simple text-brand-light-blue text-lg shrink-0"></i>
+              <span>info@reffink.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+        <p>&copy; 2026 REFF INK. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <p>Designed with ❤️ for premium quality.</p>
+          <a href="admin/login.html" class="text-slate-500 hover:text-brand-light-blue transition" title="Admin Login"><i class="ph-bold ph-lock-key text-lg"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="#" target="_blank" class="dynamic-wa-link fixed bottom-6 right-6 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:scale-110 hover:bg-green-600 transition-all z-50 hover-lift">
+    <i class="ph-fill ph-whatsapp-logo"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

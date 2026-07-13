@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelola FAQ - REFF INK Admin</title>
+  <link rel="stylesheet" href="../src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans flex h-screen overflow-hidden">
+
+  <!-- Sidebar -->
+  <div id="admin-sidebar-overlay" class="fixed inset-0 bg-slate-900/50 z-20 hidden md:hidden backdrop-blur-sm transition-opacity"></div>
+  <aside id="admin-sidebar" class="w-64 bg-slate-900 text-slate-300 flex flex-col h-full shrink-0 transition-transform duration-300 fixed md:relative z-30 -translate-x-full md:translate-x-0">
+    <div class="h-20 flex items-center px-6 border-b border-slate-800 shrink-0">
+      <a href="index.html" class="text-xl font-bold text-white flex items-center gap-2">
+        <i class="ph-fill ph-printer text-brand-light-blue"></i> REFF INK Admin
+      </a>
+    </div>
+    
+    <div class="flex-1 overflow-y-auto py-4 px-3 space-y-1 custom-scrollbar">
+      <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-squares-four text-xl"></i> Dashboard
+      </a>
+      
+      <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mt-6 mb-2">Layanan & Harga</p>
+      <a href="service.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-receipt text-xl"></i> Data Service Tracking
+      </a>
+      <a href="layanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-list-dashes text-xl"></i> Kelola Layanan
+      </a>
+      <a href="harga.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-currency-circle-dollar text-xl"></i> Kelola Harga
+      </a>
+      <a href="promo.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-ticket text-xl"></i> Kelola Promo
+      </a>
+      
+      <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mt-6 mb-2">Informasi Publik</p>
+      <a href="galeri.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-images text-xl"></i> Kelola Galeri
+      </a>
+      <a href="faq.html" class="flex items-center gap-3 px-3 py-3 rounded-lg bg-brand-light-blue text-white font-medium">
+        <i class="ph-bold ph-question text-xl"></i> Kelola FAQ
+      </a>
+      <a href="testimoni.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-star text-xl"></i> Kelola Testimoni
+      </a>
+
+      <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mt-6 mb-2">Pengaturan</p>
+      <a href="pengaturan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+        <i class="ph-bold ph-gear text-xl"></i> Pengaturan Web
+      </a>
+    </div>
+
+    <div class="p-4 border-t border-slate-800 shrink-0">
+      <button id="logout-btn" class="w-full text-left text-sm text-red-400 hover:text-red-300 flex items-center gap-2 transition">
+        <i class="ph-bold ph-sign-out"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col h-full overflow-hidden">
+    <!-- Topbar -->
+    <header class="h-20 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-8 shrink-0">
+      <div class="flex items-center gap-3">
+        <button id="admin-mobile-menu-btn" class="md:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-lg transition">
+          <i class="ph-bold ph-list text-2xl"></i>
+        </button>
+        <h2 class="text-xl font-bold text-slate-800">Kelola FAQ</h2>
+      </div>
+    </header>
+
+    <div class="flex-1 overflow-y-auto p-8 bg-slate-50">
+      <div class="max-w-5xl mx-auto">
+        <!-- Header & Add Button -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+          <div>
+            <h3 class="text-2xl font-bold text-slate-800">Daftar FAQ</h3>
+            <p class="text-slate-500">Atur pertanyaan yang sering diajukan pelanggan.</p>
+          </div>
+          <button id="open-add-modal" class="bg-brand-blue text-white px-5 py-2.5 rounded-lg font-medium hover:bg-slate-800 transition flex items-center gap-2">
+            <i class="ph-bold ph-plus"></i> Tambah FAQ
+          </button>
+        </div>
+
+        <!-- Skeleton Loading -->
+        <div id="faq-loading" class="text-center py-12">
+          <div class="w-12 h-12 border-4 border-slate-200 border-t-brand-blue rounded-full animate-spin mx-auto mb-4"></div>
+          <p class="text-slate-500">Memuat FAQ...</p>
+        </div>
+
+        <!-- FAQ List -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hidden" id="faq-list-container">
+          <ul id="faq-list" class="divide-y divide-slate-100">
+            <!-- FAQ items will be populated here -->
+          </ul>
+        </div>
+        
+        <div id="faq-empty" class="hidden text-center py-12 bg-white rounded-2xl shadow-sm border border-slate-200">
+          <p class="text-slate-500">Belum ada FAQ. Tambahkan sekarang.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal Tambah/Edit FAQ -->
+  <div id="faq-modal" class="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden transform scale-95 transition-transform duration-300" id="faq-modal-content">
+      <div class="p-6 border-b border-slate-100 flex justify-between items-center">
+        <h3 id="modal-title" class="text-xl font-bold text-slate-800">Tambah FAQ</h3>
+        <button id="close-modal" class="text-slate-400 hover:text-slate-600 transition">
+          <i class="ph-bold ph-x text-xl"></i>
+        </button>
+      </div>
+      <form id="faq-form" class="p-6 space-y-4">
+        <input type="hidden" id="faq-id">
+        
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">Pertanyaan</label>
+          <input type="text" id="question" required placeholder="Apakah ada garansi?" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-light-blue/50 focus:border-brand-light-blue transition">
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">Jawaban</label>
+          <textarea id="answer" required rows="4" placeholder="Tentu, kami memberikan garansi 1 bulan..." class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-light-blue/50 focus:border-brand-light-blue transition"></textarea>
+        </div>
+        
+        <div class="pt-4 flex gap-3">
+          <button type="button" id="cancel-modal" class="flex-1 px-4 py-2.5 border border-slate-200 text-slate-600 font-medium rounded-lg hover:bg-slate-50 transition">Batal</button>
+          <button type="submit" id="save-btn" class="flex-1 px-4 py-2.5 bg-brand-blue text-white font-medium rounded-lg hover:bg-brand-light-blue transition flex items-center justify-center gap-2">
+            <span>Simpan</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { supabase } from '../src/supabase.js';
+    import { requireAuth, logoutAdmin } from '../src/auth.js';
+    
+    // Auth Check
+    requireAuth();
+    document.getElementById('logout-btn').addEventListener('click', logoutAdmin);
+
+    const modal = document.getElementById('faq-modal');
+    const modalContent = document.getElementById('faq-modal-content');
+    const openModalBtn = document.getElementById('open-add-modal');
+    const closeModalBtn = document.getElementById('close-modal');
+    const cancelModalBtn = document.getElementById('cancel-modal');
+    const form = document.getElementById('faq-form');
+    const list = document.getElementById('faq-list');
+    const listContainer = document.getElementById('faq-list-container');
+    const loading = document.getElementById('faq-loading');
+    const empty = document.getElementById('faq-empty');
+
+    function openModal(item = null) {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => modalContent.classList.remove('scale-95'), 10);
+      
+      if (item) {
+        document.getElementById('modal-title').textContent = 'Edit FAQ';
+        document.getElementById('faq-id').value = item.id;
+        document.getElementById('question').value = item.question;
+        document.getElementById('answer').value = item.answer;
+      } else {
+        document.getElementById('modal-title').textContent = 'Tambah FAQ';
+        form.reset();
+        document.getElementById('faq-id').value = '';
+      }
+    }
+
+    function closeModal() {
+      modalContent.classList.add('scale-95');
+      setTimeout(() => modal.classList.add('opacity-0', 'pointer-events-none'), 300);
+    }
+
+    openModalBtn.addEventListener('click', () => openModal());
+    closeModalBtn.addEventListener('click', closeModal);
+    cancelModalBtn.addEventListener('click', closeModal);
+    
+    // Close when clicking outside
+    modal.addEventListener('click', (e) => {
+      if(e.target === modal) closeModal();
+    });
+
+    async function loadData() {
+      loading.classList.remove('hidden');
+      listContainer.classList.add('hidden');
+      empty.classList.add('hidden');
+      list.innerHTML = '';
+      
+      const { data, error } = await supabase.from('faqs').select('*').order('created_at', { ascending: false });
+      loading.classList.add('hidden');
+      
+      if (error) {
+        alert('Gagal memuat FAQ: ' + error.message);
+        return;
+      }
+      
+      if(data.length === 0) {
+        empty.classList.remove('hidden');
+      } else {
+        listContainer.classList.remove('hidden');
+        data.forEach(item => {
+          const li = document.createElement('li');
+          li.className = 'p-6 hover:bg-slate-50 transition flex justify-between items-start gap-4';
+          li.innerHTML = `
+            <div>
+              <h4 class="font-bold text-slate-800 text-lg mb-2">${item.question}</h4>
+              <p class="text-slate-600">${item.answer}</p>
+            </div>
+            <div class="flex gap-2 shrink-0">
+              <button onclick='window.editItem(${JSON.stringify(item).replace(/'/g, "&#39;")})' class="p-2 text-slate-400 hover:text-brand-blue hover:bg-blue-50 rounded-lg transition" title="Edit">
+                <i class="ph-bold ph-pencil-simple text-xl"></i>
+              </button>
+              <button onclick="window.deleteItem(${item.id})" class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition" title="Hapus">
+                <i class="ph-bold ph-trash text-xl"></i>
+              </button>
+            </div>
+          `;
+          list.appendChild(li);
+        });
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('faq-id').value;
+      const payload = {
+        question: document.getElementById('question').value,
+        answer: document.getElementById('answer').value
+      };
+
+      const btn = document.getElementById('save-btn');
+      btn.disabled = true;
+      btn.innerHTML = 'Menyimpan...';
+
+      let err;
+      if (id) {
+        const { error } = await supabase.from('faqs').update(payload).eq('id', id);
+        err = error;
+      } else {
+        const { error } = await supabase.from('faqs').insert([payload]);
+        err = error;
+      }
+      
+      btn.disabled = false;
+      btn.innerHTML = 'Simpan';
+
+      if (err) {
+        alert('Gagal menyimpan: ' + err.message);
+      } else {
+        closeModal();
+        loadData();
+      }
+    });
+
+    window.editItem = (item) => openModal(item);
+
+    window.deleteItem = async (id) => {
+      if(!confirm('Yakin ingin menghapus FAQ ini?')) return;
+      const { error } = await supabase.from('faqs').delete().eq('id', id);
+      if(error) alert('Gagal menghapus: ' + error.message);
+      else loadData();
+    };
+
+    loadData();
+  </script>
+</body>
+</html>

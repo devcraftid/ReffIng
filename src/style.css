@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #020617; /* Slate 950 for a deeper, more premium dark blue */
+  --color-brand-light-blue: #3b82f6; /* Vibrant Blue */
+  --color-brand-cyan: #06b6d4; /* Vibrant Cyan */
+  --color-brand-dark: #0f172a;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --animate-blob: blob 7s infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+/* Custom base styles */
+@layer base {
+  body {
+    @apply font-sans text-slate-800 bg-slate-50 antialiased selection:bg-brand-light-blue selection:text-white;
+  }
+}
+
+/* Utilities and Animations */
+@layer utilities {
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-light-blue/20;
+  }
+  
+  .glassmorphism {
+    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-sm;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-light-blue to-brand-cyan;
+  }
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracking Service - REFF INK</title>
+  <link rel="stylesheet" href="./src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- Navbar -->
+  <nav class="fixed w-full z-50 glassmorphism transition-all duration-300 shadow-sm bg-white/90" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20 items-center">
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-brand-blue to-brand-light-blue bg-clip-text text-transparent flex items-center gap-2">
+            <i class="ph-fill ph-printer text-brand-light-blue"></i>
+            REFF INK
+          </a>
+        </div>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-8 items-center">
+          <a href="index.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Beranda</a>
+          <a href="layanan.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Layanan</a>
+          <a href="harga.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Harga</a>
+          <a href="galeri.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Galeri</a>
+          <a href="promo.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Promo</a>
+          <a href="tentang.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Tentang Kami</a>
+          <a href="faq.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">FAQ</a>
+          <a href="tracking.html" class="text-brand-blue font-semibold hover:text-brand-light-blue transition">Tracking Service</a>
+          <a href="admin/login.html" class="text-slate-400 hover:text-brand-light-blue transition ml-2" title="Login Admin"><i class="ph-bold ph-lock-key text-xl"></i></a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-blue focus:outline-none">
+            <i class="ph ph-list text-3xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-xl left-0 right-0">
+      <div class="px-4 pt-2 pb-6 space-y-1">
+        <a href="index.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Beranda</a>
+        <a href="layanan.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Layanan</a>
+        <a href="harga.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Harga</a>
+        <a href="galeri.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Galeri</a>
+        <a href="promo.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Promo</a>
+        <a href="tentang.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Tentang Kami</a>
+        <a href="faq.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">FAQ</a>
+        <a href="tracking.html" class="block px-3 py-3 text-brand-light-blue font-medium hover:bg-slate-50 rounded-lg border border-brand-light-blue mt-2 text-center">Lacak Service</a>
+        <a href="admin/login.html" class="block px-3 py-3 text-slate-400 font-medium hover:bg-slate-50 rounded-lg flex items-center gap-2"><i class="ph-bold ph-lock-key"></i> Login Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <section class="pt-32 pb-20 bg-slate-50 min-h-screen flex items-center">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12">
+        <div class="text-center mb-10">
+          <div class="w-16 h-16 bg-brand-light-blue/10 text-brand-light-blue rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="ph-bold ph-magnifying-glass text-3xl"></i>
+          </div>
+          <h1 class="text-3xl font-bold text-brand-blue mb-2">Cek Status Service Printer</h1>
+          <p class="text-slate-500">Masukkan nomor nota yang kami berikan saat Anda menyerahkan printer untuk mengetahui progres perbaikan secara real-time.</p>
+        </div>
+
+        <!-- Form Tracking -->
+        <form id="tracking-form" class="mb-10 relative">
+          <div class="flex gap-2">
+            <input type="text" id="nota-input" placeholder="Contoh: RF-2607001" required class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:border-brand-light-blue focus:ring-2 focus:ring-brand-light-blue/20 transition text-lg uppercase tracking-wider font-medium text-center md:text-left">
+            <button type="submit" class="bg-brand-blue text-white px-8 py-4 rounded-2xl font-bold hover:bg-brand-light-blue transition hover-lift flex-shrink-0 flex items-center justify-center gap-2">
+              <i class="ph-bold ph-check-circle"></i> <span class="hidden md:inline">Cek Status</span>
+            </button>
+          </div>
+          <p id="error-msg" class="text-red-500 text-sm mt-2 hidden text-center md:text-left">Nomor nota tidak ditemukan. Silakan cek kembali.</p>
+        </form>
+
+        <!-- Hasil Tracking (Hidden by default) -->
+        <div id="tracking-result" class="hidden border-t border-slate-100 pt-8 mt-8">
+          <div class="flex justify-between items-start mb-8">
+            <div>
+              <p class="text-sm text-slate-500">Nomor Nota</p>
+              <h3 class="text-xl font-bold text-brand-blue" id="res-nota">RF-2607001</h3>
+            </div>
+            <div class="text-right">
+              <p class="text-sm text-slate-500">Merk & Tipe</p>
+              <h3 class="text-lg font-semibold text-slate-800" id="res-printer">Epson L3210</h3>
+            </div>
+          </div>
+
+          <!-- Progress Stepper -->
+          <div class="relative">
+            <!-- Line connector -->
+            <div class="absolute left-6 top-8 bottom-8 w-0.5 bg-slate-200"></div>
+
+            <div class="space-y-6">
+              <!-- Step 1: Diterima / Menunggu -->
+              <div class="flex items-start gap-4 relative z-10" id="step-1">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center shrink-0 step-icon bg-green-500 text-white shadow-lg shadow-green-500/30">
+                  <i class="ph-bold ph-receipt text-xl"></i>
+                </div>
+                <div class="pt-2">
+                  <h4 class="font-bold text-slate-800">Menunggu (Diterima)</h4>
+                  <p class="text-sm text-slate-500">Printer telah diterima oleh tim REFF INK dan masuk antrean.</p>
+                </div>
+              </div>
+
+              <!-- Step 2: Sedang Dicek -->
+              <div class="flex items-start gap-4 relative z-10 opacity-40" id="step-2">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center shrink-0 step-icon bg-slate-200 text-slate-500">
+                  <i class="ph-bold ph-magnifying-glass text-xl"></i>
+                </div>
+                <div class="pt-2">
+                  <h4 class="font-bold text-slate-800">Sedang Dicek</h4>
+                  <p class="text-sm text-slate-500">Teknisi sedang melakukan diagnosa kerusakan printer Anda.</p>
+                </div>
+              </div>
+
+              <!-- Step 3: Menunggu Sparepart (Optional, skip if not needed) -->
+              <div class="flex items-start gap-4 relative z-10 opacity-40 hidden" id="step-3">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center shrink-0 step-icon bg-slate-200 text-slate-500">
+                  <i class="ph-bold ph-package text-xl"></i>
+                </div>
+                <div class="pt-2">
+                  <h4 class="font-bold text-slate-800">Menunggu Sparepart</h4>
+                  <p class="text-sm text-slate-500">Menunggu suku cadang yang dipesan untuk proses perbaikan.</p>
+                </div>
+              </div>
+
+              <!-- Step 4: Sedang Diperbaiki -->
+              <div class="flex items-start gap-4 relative z-10 opacity-40" id="step-4">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center shrink-0 step-icon bg-slate-200 text-slate-500">
+                  <i class="ph-bold ph-wrench text-xl"></i>
+                </div>
+                <div class="pt-2">
+                  <h4 class="font-bold text-slate-800">Sedang Diperbaiki</h4>
+                  <p class="text-sm text-slate-500">Printer sedang dalam proses perbaikan oleh teknisi.</p>
+                </div>
+              </div>
+
+              <!-- Step 5: Selesai -->
+              <div class="flex items-start gap-4 relative z-10 opacity-40" id="step-5">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center shrink-0 step-icon bg-slate-200 text-slate-500">
+                  <i class="ph-bold ph-check-circle text-xl"></i>
+                </div>
+                <div class="pt-2">
+                  <h4 class="font-bold text-slate-800">Selesai</h4>
+                  <p class="text-sm text-slate-500">Perbaikan selesai. Printer siap diambil.</p>
+                </div>
+              </div>
+              
+              <!-- Step 6: Sudah Diambil -->
+              <div class="flex items-start gap-4 relative z-10 opacity-40" id="step-6">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center shrink-0 step-icon bg-slate-200 text-slate-500">
+                  <i class="ph-bold ph-hand-heart text-xl"></i>
+                </div>
+                <div class="pt-2">
+                  <h4 class="font-bold text-slate-800">Sudah Diambil</h4>
+                  <p class="text-sm text-slate-500">Printer telah diambil oleh pelanggan. Terima kasih telah menggunakan jasa kami.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          
+          <div class="mt-10 bg-blue-50 border border-blue-100 p-4 rounded-xl flex gap-3 text-sm text-blue-800">
+            <i class="ph-fill ph-info text-xl shrink-0"></i>
+            <p>Jika ada pertanyaan terkait status perbaikan, Anda bisa langsung menghubungi CS kami via WhatsApp.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Dummy script for simulation -->
+  <script>
+    document.getElementById('tracking-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const input = document.getElementById('nota-input').value.toUpperCase();
+      const errorMsg = document.getElementById('error-msg');
+      const resultDiv = document.getElementById('tracking-result');
+      
+      // Simulate fake tracking logic
+      if(input === 'RF-2607001' || input === 'TEST') {
+        errorMsg.classList.add('hidden');
+        resultDiv.classList.remove('hidden');
+        
+        // Let's simulate status "Sedang Diperbaiki"
+        const steps = [1, 2, 4]; // 1, 2, and 4 active
+        
+        // Reset all steps to inactive first
+        [1,2,3,4,5,6].forEach(i => {
+          const el = document.getElementById('step-'+i);
+          if(el) {
+            el.classList.add('opacity-40');
+            const icon = el.querySelector('.step-icon');
+            icon.className = 'w-12 h-12 rounded-full flex items-center justify-center shrink-0 step-icon bg-slate-200 text-slate-500';
+          }
+        });
+        
+        // Set active steps
+        steps.forEach((step, idx) => {
+          const el = document.getElementById('step-'+step);
+          if(el) {
+            el.classList.remove('opacity-40');
+            const icon = el.querySelector('.step-icon');
+            
+            if(idx === steps.length - 1) {
+              // Current active step - blue
+              icon.className = 'w-12 h-12 rounded-full flex items-center justify-center shrink-0 step-icon bg-brand-light-blue text-white shadow-lg shadow-brand-light-blue/30 scale-110 transition';
+            } else {
+              // Completed step - green
+              icon.className = 'w-12 h-12 rounded-full flex items-center justify-center shrink-0 step-icon bg-green-500 text-white';
+            }
+          }
+        });
+      } else {
+        errorMsg.classList.remove('hidden');
+        resultDiv.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

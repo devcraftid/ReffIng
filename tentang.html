@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tentang Kami - REFF INK</title>
+  <link rel="stylesheet" href="./src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <!-- Navbar -->
+  <nav class="fixed w-full z-50 glassmorphism shadow-sm bg-white/90">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20 items-center">
+        <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-brand-blue to-brand-light-blue bg-clip-text text-transparent flex items-center gap-2">
+          <i class="ph-fill ph-printer text-brand-light-blue"></i> REFF INK
+        </a>
+
+        <div class="hidden md:flex space-x-8 items-center">
+          <a href="index.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Beranda</a>
+          <a href="layanan.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Layanan</a>
+          <a href="harga.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Harga</a>
+          <a href="galeri.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Galeri</a>
+          <a href="promo.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Promo</a>
+          <a href="tentang.html" class="text-brand-blue font-semibold hover:text-brand-light-blue transition">Tentang Kami</a>
+          <a href="faq.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">FAQ</a>
+          <a href="admin/login.html" class="text-slate-400 hover:text-brand-light-blue transition ml-2 mr-2" title="Login Admin"><i class="ph-bold ph-lock-key text-xl"></i></a>
+          <a href="#" target="_blank" class="dynamic-wa-link bg-brand-light-blue text-white px-5 py-2.5 rounded-full font-medium hover:bg-brand-blue transition hover-lift">Hubungi Kami</a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-blue focus:outline-none">
+            <i class="ph ph-list text-3xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-xl left-0 right-0">
+      <div class="px-4 pt-2 pb-6 space-y-1">
+        <a href="index.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Beranda</a>
+        <a href="layanan.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Layanan</a>
+        <a href="harga.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Harga</a>
+        <a href="galeri.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Galeri</a>
+        <a href="promo.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Promo</a>
+        <a href="tentang.html" class="block px-3 py-3 text-brand-blue font-semibold bg-slate-50 rounded-lg">Tentang Kami</a>
+        <a href="faq.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">FAQ</a>
+        <a href="tracking.html" class="block px-3 py-3 text-brand-light-blue font-medium hover:bg-slate-50 rounded-lg border border-brand-light-blue mt-2 text-center">Lacak Service</a>
+        <a href="admin/login.html" class="block px-3 py-3 text-slate-400 font-medium hover:bg-slate-50 rounded-lg flex items-center gap-2"><i class="ph-bold ph-lock-key"></i> Login Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-32 pb-16 bg-brand-blue text-white text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+    <div class="relative z-10">
+      <h1 class="text-4xl font-bold mb-4">Tentang REFF INK</h1>
+      <p class="text-slate-300 max-w-2xl mx-auto px-4">Solusi terpercaya untuk segala permasalahan printer Anda.</p>
+    </div>
+  </section>
+
+  <!-- Profil Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-800 mb-4">Profil Kami</h2>
+        <div class="w-20 h-1 bg-brand-light-blue mx-auto rounded-full"></div>
+      </div>
+      
+      <!-- Skeleton Loading for Profile -->
+      <div id="pub_profile_loading" class="animate-pulse space-y-4">
+        <div class="h-4 bg-slate-200 rounded w-full"></div>
+        <div class="h-4 bg-slate-200 rounded w-5/6"></div>
+        <div class="h-4 bg-slate-200 rounded w-4/6"></div>
+        <div class="h-4 bg-slate-200 rounded w-full"></div>
+        <div class="h-4 bg-slate-200 rounded w-3/4"></div>
+      </div>
+
+      <div id="pub_profile_content" class="prose prose-lg text-slate-600 mx-auto hidden">
+        <!-- Content from website_settings.tentang_kami -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimoni Section -->
+  <section class="py-20 bg-slate-50 border-t border-slate-100 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 relative z-10">
+        <h2 class="text-3xl font-bold text-slate-800 mb-4">Apa Kata Pelanggan?</h2>
+        <p class="text-slate-500 max-w-2xl mx-auto">Kami bangga dapat melayani dan menyelesaikan masalah printer pelanggan kami.</p>
+      </div>
+      
+      <!-- Skeleton Loading for Testimonial -->
+      <div id="pub_testimonial_loading" class="flex justify-center py-12 relative z-10">
+        <div class="w-12 h-12 border-4 border-slate-200 border-t-brand-blue rounded-full animate-spin"></div>
+      </div>
+
+      <!-- Testimonial Grid -->
+      <div id="pub_testimonial_grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden relative z-10">
+        <!-- Testimonial items -->
+      </div>
+      
+      <!-- Empty Testimonial -->
+      <div id="pub_testimonial_empty" class="hidden text-center py-12 relative z-10">
+        <p class="text-slate-500">Belum ada ulasan saat ini.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (Simple) -->
+  <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p>&copy; 2026 REFF INK. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="./src/main.js" type="module"></script>
+</body>
+</html>

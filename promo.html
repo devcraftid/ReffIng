@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promo - REFF INK</title>
+  <link rel="stylesheet" href="./src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <!-- Navbar -->
+  <nav class="fixed w-full z-50 glassmorphism shadow-sm bg-white/90">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20 items-center">
+        <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-brand-blue to-brand-light-blue bg-clip-text text-transparent flex items-center gap-2">
+          <i class="ph-fill ph-printer text-brand-light-blue"></i> REFF INK
+        </a>
+
+        <div class="hidden md:flex space-x-8 items-center">
+          <a href="index.html" class="text-slate-600 font-medium hover:text-brand-light-blue transition">Beranda</a>
+          <a href="promo.html" class="text-brand-blue font-semibold hover:text-brand-light-blue transition">Promo</a>
+          <a href="admin/login.html" class="text-slate-400 hover:text-brand-light-blue transition ml-2 mr-2" title="Login Admin"><i class="ph-bold ph-lock-key text-xl"></i></a>
+          <a href="#" target="_blank" class="dynamic-wa-link bg-brand-light-blue text-white px-5 py-2.5 rounded-full font-medium hover:bg-brand-blue transition hover-lift">Hubungi Kami</a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-blue focus:outline-none">
+            <i class="ph ph-list text-3xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-xl left-0 right-0">
+      <div class="px-4 pt-2 pb-6 space-y-1">
+        <a href="index.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Beranda</a>
+        <a href="layanan.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Layanan</a>
+        <a href="harga.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Harga</a>
+        <a href="galeri.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Galeri</a>
+        <a href="promo.html" class="block px-3 py-3 text-brand-blue font-semibold bg-slate-50 rounded-lg">Promo</a>
+        <a href="tentang.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Tentang Kami</a>
+        <a href="faq.html" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">FAQ</a>
+        <a href="tracking.html" class="block px-3 py-3 text-brand-light-blue font-medium hover:bg-slate-50 rounded-lg border border-brand-light-blue mt-2 text-center">Lacak Service</a>
+        <a href="admin/login.html" class="block px-3 py-3 text-slate-400 font-medium hover:bg-slate-50 rounded-lg flex items-center gap-2"><i class="ph-bold ph-lock-key"></i> Login Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-16 bg-brand-blue text-white text-center">
+    <h1 class="text-4xl font-bold mb-4">Promo Spesial Bulan Ini</h1>
+    <p class="text-slate-300">Dapatkan harga terbaik untuk perawatan printer Anda.</p>
+  </section>
+
+  <section class="py-20 bg-white min-h-[50vh]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8" id="pub_promo_container">
+        <!-- Dynamic promos injected here -->
+      </div>
+    </div>
+  </section>
+</body>
+</html>
