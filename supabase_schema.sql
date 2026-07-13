@@ -127,11 +127,26 @@ CREATE POLICY "Public read faqs" ON public.faqs FOR SELECT USING (true);
 DROP POLICY IF EXISTS "Public read testimonials" ON public.testimonials;
 CREATE POLICY "Public read testimonials" ON public.testimonials FOR SELECT USING (true);
 
--- (Optional) Create Authentication Policies for Admins to INSERT/UPDATE/DELETE
--- Assuming you use Supabase Auth, you can add policies like:
--- CREATE POLICY "Admin can insert" ON public.services FOR INSERT WITH CHECK (auth.role() = 'authenticated');
--- CREATE POLICY "Admin can update" ON public.services FOR UPDATE USING (auth.role() = 'authenticated');
--- CREATE POLICY "Admin can delete" ON public.services FOR DELETE USING (auth.role() = 'authenticated');
+-- Create Authentication Policies for Admins to INSERT/UPDATE/DELETE
+DO $$ 
+DECLARE 
+    t text;
+BEGIN
+    FOR t IN 
+        SELECT table_name 
+        FROM information_schema.tables 
+        WHERE table_schema = 'public' 
+    LOOP
+        EXECUTE format('DROP POLICY IF EXISTS "Admin can insert %I" ON public.%I', t, t);
+        EXECUTE format('CREATE POLICY "Admin can insert %I" ON public.%I FOR INSERT WITH CHECK (auth.role() = ''authenticated'');', t, t);
+        
+        EXECUTE format('DROP POLICY IF EXISTS "Admin can update %I" ON public.%I', t, t);
+        EXECUTE format('CREATE POLICY "Admin can update %I" ON public.%I FOR UPDATE USING (auth.role() = ''authenticated'');', t, t);
+        
+        EXECUTE format('DROP POLICY IF EXISTS "Admin can delete %I" ON public.%I', t, t);
+        EXECUTE format('CREATE POLICY "Admin can delete %I" ON public.%I FOR DELETE USING (auth.role() = ''authenticated'');', t, t);
+    END LOOP;
+END $$;
 
 -- ==========================================
 -- SUPABASE STORAGE FOR IMAGES
