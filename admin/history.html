@@ -269,7 +269,7 @@
     const dataCount = document.getElementById('data-count');
     
     const searchInput = document.getElementById('search-input');
-    const statusFilter = document.getElementById('status-filter');
+    
 
     let allData = [];
 
@@ -440,7 +440,7 @@
     };
 
     searchInput.addEventListener('input', filterData);
-    statusFilter.addEventListener('change', filterData);
+    
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
