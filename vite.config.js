@@ -25,7 +25,9 @@ export default defineConfig({
         adminPromo: './admin/promo.html',
         adminGaleri: './admin/galeri.html',
         adminFaq: './admin/faq.html',
-        adminTestimoni: './admin/testimoni.html'
+        adminTestimoni: './admin/testimoni.html',
+        adminHistory: './admin/history.html',
+        adminStok: './admin/stok.html'
       }
     }
   }
