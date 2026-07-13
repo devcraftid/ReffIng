@@ -25,7 +25,7 @@ VALUES (
     'REFF INK', 
     'REFF INK adalah pusat layanan printer dan isi ulang tinta profesional. Kami melayani perbaikan printer berbagai merk dengan teknisi handal dan garansi service.', 
     'Jl. Contoh Alamat No. 123, Kota', 
-    '6281234567890', 
+    '6287876641418', 
     'Solusi Terbaik untuk<br>Printer Anda', 
     'Layanan isi ulang tinta, service printer, dan perawatan printer terbaik. Kami mengatasi masalah printer Anda dengan cepat dan bergaransi.', 
     'Kami menggunakan tinta berkualitas tinggi dan sparepart original. Proses pengerjaan cepat dan bergaransi.', 

@@ -77,11 +77,25 @@
         <h2 class="text-xl font-bold text-slate-800">Dashboard</h2>
       </div>
       
-      <div class="flex items-center gap-4">
-        <button class="relative p-2 text-slate-500 hover:bg-slate-100 rounded-full transition">
+      <div class="flex items-center gap-4 relative">
+        <button id="notif-btn" class="relative p-2 text-slate-500 hover:bg-slate-100 rounded-full transition">
           <i class="ph-bold ph-bell text-xl"></i>
-          <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+          <span id="notif-badge" class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white hidden"></span>
         </button>
+        
+        <!-- Notif Dropdown -->
+        <div id="notif-dropdown" class="absolute top-12 right-24 w-80 bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden hidden z-50 animate-fade-in-up" style="animation-duration: 0.2s;">
+          <div class="p-4 border-b border-slate-100 bg-slate-50 font-bold text-slate-800 flex justify-between items-center">
+            <span>Service Menunggu</span>
+            <span id="notif-count" class="bg-red-100 text-red-600 text-xs px-2 py-0.5 rounded-full">0</span>
+          </div>
+          <div id="notif-list" class="max-h-72 overflow-y-auto divide-y divide-slate-100 text-sm">
+            <div class="p-4 text-center text-slate-500">Memuat...</div>
+          </div>
+          <a href="service.html" class="block w-full p-3 text-center text-sm font-bold text-brand-light-blue hover:bg-slate-50 transition border-t border-slate-100">
+            Kelola Semua Service
+          </a>
+        </div>
         <a href="../index.html" target="_blank" class="text-sm font-medium text-brand-light-blue hover:underline flex items-center gap-1">
           Lihat Website <i class="ph-bold ph-arrow-square-out"></i>
         </a>
@@ -207,6 +221,69 @@
     import { logoutAdmin } from '../src/auth.js';
     const logoutBtn = document.getElementById('logout-btn');
     if(logoutBtn) logoutBtn.addEventListener('click', logoutAdmin);
+    
+    // Notifications Logic
+    async function loadNotifications() {
+      const { data, error } = await supabase
+        .from('service_tracking')
+        .select('*')
+        .eq('status', 'Menunggu')
+        .order('created_at', { ascending: false })
+        .limit(5);
+        
+      const notifBadge = document.getElementById('notif-badge');
+      const notifCount = document.getElementById('notif-count');
+      const notifList = document.getElementById('notif-list');
+      
+      if (error) {
+        notifList.innerHTML = '<div class="p-4 text-center text-red-500">Gagal memuat</div>';
+        return;
+      }
+      
+      if (data && data.length > 0) {
+        notifBadge.classList.remove('hidden');
+        notifCount.textContent = data.length;
+        notifList.innerHTML = '';
+        data.forEach(item => {
+          const div = document.createElement('a');
+          div.href = 'service.html';
+          div.className = 'block p-4 hover:bg-slate-50 transition cursor-pointer';
+          div.innerHTML = `
+            <div class="flex justify-between items-start mb-1">
+              <span class="font-bold text-slate-800">${item.no_nota}</span>
+              <span class="text-xs text-slate-400">${new Date(item.created_at).toLocaleDateString('id-ID')}</span>
+            </div>
+            <div class="text-slate-600 line-clamp-1">${item.nama_pelanggan} - ${item.merek_printer}</div>
+          `;
+          notifList.appendChild(div);
+        });
+      } else {
+        notifBadge.classList.add('hidden');
+        notifCount.textContent = '0';
+        notifList.innerHTML = '<div class="p-6 text-center text-slate-400">Tidak ada service baru</div>';
+      }
+    }
+
+    const notifBtn = document.getElementById('notif-btn');
+    const notifDropdown = document.getElementById('notif-dropdown');
+    
+    notifBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      notifDropdown.classList.toggle('hidden');
+      if (!notifDropdown.classList.contains('hidden')) {
+        loadNotifications();
+      }
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!notifDropdown.contains(e.target) && !notifBtn.contains(e.target)) {
+        notifDropdown.classList.add('hidden');
+      }
+    });
+    
+    // Initial fetch for badge
+    loadNotifications();
+
   </script>
 </body>
 </html>
