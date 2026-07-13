@@ -140,7 +140,7 @@
           </div>
           <div>
             <p class="text-sm font-medium text-slate-500">Service Hari Ini</p>
-            <h3 class="text-2xl font-bold text-slate-800">0</h3>
+            <h3 id="stat-service-hari-ini" class="text-2xl font-bold text-slate-800">0</h3>
           </div>
         </div>
 
@@ -150,7 +150,7 @@
           </div>
           <div>
             <p class="text-sm font-medium text-slate-500">Printer Selesai</p>
-            <h3 class="text-2xl font-bold text-slate-800">0</h3>
+            <h3 id="stat-printer-selesai" class="text-2xl font-bold text-slate-800">0</h3>
           </div>
         </div>
       </div>
@@ -173,10 +173,13 @@
                   <th class="px-6 py-4 font-semibold">Teknisi</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-slate-100 text-sm">
+              <tbody id="dashboard-service-list" class="divide-y divide-slate-100 text-sm">
                 <tr>
                   <td colspan="4" class="px-6 py-8 text-center text-slate-500">
-                    Belum ada data service terbaru.
+                    <div class="animate-pulse flex flex-col items-center">
+                      <div class="h-8 w-8 bg-slate-200 rounded-full mb-2"></div>
+                      <div class="h-4 w-32 bg-slate-200 rounded"></div>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -191,10 +194,10 @@
           
           <div class="p-6 relative z-10">
             <h3 class="font-bold text-lg mb-2">Laporan Pendapatan</h3>
-            <p class="text-slate-400 text-sm mb-6">Bulan Ini</p>
-            <h2 class="text-4xl font-bold mb-1">Rp 0</h2>
+            <p class="text-slate-400 text-sm mb-6">Total Riwayat Selesai/Diambil</p>
+            <h2 id="stat-pendapatan" class="text-4xl font-bold mb-1">Rp 0</h2>
             <p class="text-slate-500 text-sm flex items-center gap-1">
-              <i class="ph-bold ph-minus"></i> 0% dari bulan lalu
+              <i class="ph-bold ph-trend-up text-brand-light-blue"></i> Data Keseluruhan
             </p>
           </div>
           
@@ -271,6 +274,67 @@
       }
     }
 
+    async function loadDashboardData() {
+      const todayStr = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+      
+      const { data, error } = await supabase
+        .from('service_tracking')
+        .select('*')
+        .order('created_at', { ascending: false });
+        
+      if (error) {
+        console.error('Failed to load dashboard', error);
+        return;
+      }
+      
+      const allData = data || [];
+      
+      // Calculate Stats
+      const todayServices = allData.filter(d => d.created_at && d.created_at.startsWith(todayStr));
+      const finishedServices = allData.filter(d => d.status === 'selesai' || d.status === 'diambil');
+      
+      let totalPendapatan = 0;
+      finishedServices.forEach(d => {
+        totalPendapatan += parseInt(d.biaya) || 0;
+      });
+      
+      document.getElementById('stat-service-hari-ini').textContent = todayServices.length;
+      document.getElementById('stat-printer-selesai').textContent = finishedServices.length;
+      document.getElementById('stat-pendapatan').textContent = 'Rp ' + totalPendapatan.toLocaleString('id-ID');
+      
+      // Populate Table (Latest 5 items)
+      const listBody = document.getElementById('dashboard-service-list');
+      if (allData.length === 0) {
+        listBody.innerHTML = '<tr><td colspan="4" class="px-6 py-8 text-center text-slate-500">Belum ada data service terbaru.</td></tr>';
+      } else {
+        listBody.innerHTML = '';
+        allData.slice(0, 5).forEach(item => {
+          let statusBadge = '';
+          const s = (item.status || '').toLowerCase();
+          if(s === 'menunggu') statusBadge = '<span class="px-2 py-1 bg-slate-100 text-slate-600 rounded-md text-xs font-semibold">Menunggu</span>';
+          else if(s === 'dicek') statusBadge = '<span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-md text-xs font-semibold">Dicek</span>';
+          else if(s === 'diperbaiki') statusBadge = '<span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-md text-xs font-semibold">Diperbaiki</span>';
+          else if(s === 'selesai') statusBadge = '<span class="px-2 py-1 bg-green-100 text-green-700 rounded-md text-xs font-semibold">Selesai</span>';
+          else if(s === 'diambil') statusBadge = '<span class="px-2 py-1 bg-purple-100 text-purple-700 rounded-md text-xs font-semibold">Diambil</span>';
+          
+          listBody.innerHTML += `
+            <tr class="hover:bg-slate-50 transition">
+              <td class="px-6 py-4">
+                <div class="font-bold text-brand-blue">${item.no_nota}</div>
+                <div class="text-xs text-slate-500">${item.nama_pelanggan || '-'}</div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="font-semibold text-slate-700">${item.tipe_printer || '-'}</div>
+                <div class="text-xs text-slate-500 truncate max-w-[120px]">${item.keluhan || '-'}</div>
+              </td>
+              <td class="px-6 py-4">${statusBadge}</td>
+              <td class="px-6 py-4 text-slate-500">-</td>
+            </tr>
+          `;
+        });
+      }
+    }
+
     const notifBtn = document.getElementById('notif-btn');
     const notifDropdown = document.getElementById('notif-dropdown');
     
@@ -288,8 +352,9 @@
       }
     });
     
-    // Initial fetch for badge
+    // Initial fetch for badge and dashboard
     loadNotifications();
+    loadDashboardData();
 
   </script>
 </body>
