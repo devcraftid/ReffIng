@@ -107,14 +107,7 @@
             <i class="ph-bold ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
             <input type="text" id="search-input" placeholder="Cari No Nota / Nama..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-light-blue focus:ring-1 focus:ring-brand-light-blue text-sm">
           </div>
-          <select id="status-filter" class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-light-blue text-slate-600">
-            <option value="">Semua Status</option>
-            <option value="menunggu">Menunggu</option>
-            <option value="dicek">Sedang Dicek</option>
-            <option value="diperbaiki">Sedang Diperbaiki</option>
-            <option value="selesai">Selesai</option>
-            <option value="diambil">Diambil</option>
-          </select>
+          
         </div>
         
         <div class="text-sm text-slate-500" id="data-count">
@@ -386,7 +379,7 @@
     }
 
     async function loadData() {
-      const { data, error } = await supabase.from('service_tracking').select('*').eq('status', 'diambil').order('waktu_selesai', { ascending: false });
+      const { data, error } = await supabase.from('service_tracking').select('*').eq('status', 'diambil').order('updated_at', { ascending: false });
       if (error) {
         alert('Gagal memuat data: ' + error.message);
         return;
@@ -397,7 +390,7 @@
 
     function filterData() {
       const term = searchInput.value.toLowerCase();
-      const status = statusFilter.value;
+      const status = '';
       
       const filtered = allData.filter(item => {
         const matchTerm = item.no_nota.toLowerCase().includes(term) || item.nama_pelanggan.toLowerCase().includes(term);
@@ -430,7 +423,7 @@
           `"${item.tipe_printer || ''}"`,
           `"${(item.keluhan || '').replace(/"/g, '""')}"`,
           item.biaya || 0,
-          item.waktu_selesai ? new Date(item.waktu_selesai).toLocaleString('id-ID') : ''
+          (item.waktu_selesai || item.updated_at) ? new Date(item.waktu_selesai || item.updated_at).toLocaleString('id-ID') : ''
         ].join(',');
       });
 
