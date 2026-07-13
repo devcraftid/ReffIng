@@ -54,7 +54,7 @@ if (window.location.pathname.includes('/admin/')) {
   requireAuth();
   
   // Admin Mobile Menu Toggle Logic
-  document.addEventListener('DOMContentLoaded', () => {
+  function initMobileMenu() {
     const mobileMenuBtn = document.getElementById('admin-mobile-menu-btn');
     const adminSidebar = document.getElementById('admin-sidebar');
     const sidebarOverlay = document.getElementById('admin-sidebar-overlay');
@@ -69,5 +69,11 @@ if (window.location.pathname.includes('/admin/')) {
         sidebarOverlay.classList.add('hidden');
       });
     }
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
 }

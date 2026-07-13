@@ -128,25 +128,55 @@ DROP POLICY IF EXISTS "Public read testimonials" ON public.testimonials;
 CREATE POLICY "Public read testimonials" ON public.testimonials FOR SELECT USING (true);
 
 -- Create Authentication Policies for Admins to INSERT/UPDATE/DELETE
-DO $$ 
-DECLARE 
-    t text;
-BEGIN
-    FOR t IN 
-        SELECT table_name 
-        FROM information_schema.tables 
-        WHERE table_schema = 'public' 
-    LOOP
-        EXECUTE format('DROP POLICY IF EXISTS "Admin can insert %I" ON public.%I', t, t);
-        EXECUTE format('CREATE POLICY "Admin can insert %I" ON public.%I FOR INSERT WITH CHECK (auth.role() = ''authenticated'');', t, t);
-        
-        EXECUTE format('DROP POLICY IF EXISTS "Admin can update %I" ON public.%I', t, t);
-        EXECUTE format('CREATE POLICY "Admin can update %I" ON public.%I FOR UPDATE USING (auth.role() = ''authenticated'');', t, t);
-        
-        EXECUTE format('DROP POLICY IF EXISTS "Admin can delete %I" ON public.%I', t, t);
-        EXECUTE format('CREATE POLICY "Admin can delete %I" ON public.%I FOR DELETE USING (auth.role() = ''authenticated'');', t, t);
-    END LOOP;
-END $$;
+-- For promos
+DROP POLICY IF EXISTS "Admin can insert promos" ON public.promos;
+CREATE POLICY "Admin can insert promos" ON public.promos FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin can update promos" ON public.promos;
+CREATE POLICY "Admin can update promos" ON public.promos FOR UPDATE USING (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin can delete promos" ON public.promos;
+CREATE POLICY "Admin can delete promos" ON public.promos FOR DELETE USING (auth.role() = 'authenticated');
+
+-- For website_settings
+DROP POLICY IF EXISTS "Admin can insert website_settings" ON public.website_settings;
+CREATE POLICY "Admin can insert website_settings" ON public.website_settings FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin can update website_settings" ON public.website_settings;
+CREATE POLICY "Admin can update website_settings" ON public.website_settings FOR UPDATE USING (auth.role() = 'authenticated');
+
+-- For services
+DROP POLICY IF EXISTS "Admin can insert services" ON public.services;
+CREATE POLICY "Admin can insert services" ON public.services FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin can update services" ON public.services;
+CREATE POLICY "Admin can update services" ON public.services FOR UPDATE USING (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin can delete services" ON public.services;
+CREATE POLICY "Admin can delete services" ON public.services FOR DELETE USING (auth.role() = 'authenticated');
+
+-- For pricing
+DROP POLICY IF EXISTS "Admin can insert pricing" ON public.pricing;
+CREATE POLICY "Admin can insert pricing" ON public.pricing FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin can update pricing" ON public.pricing;
+CREATE POLICY "Admin can update pricing" ON public.pricing FOR UPDATE USING (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin can delete pricing" ON public.pricing;
+CREATE POLICY "Admin can delete pricing" ON public.pricing FOR DELETE USING (auth.role() = 'authenticated');
+
+-- For gallery
+DROP POLICY IF EXISTS "Admin can insert gallery" ON public.gallery;
+CREATE POLICY "Admin can insert gallery" ON public.gallery FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin can delete gallery" ON public.gallery;
+CREATE POLICY "Admin can delete gallery" ON public.gallery FOR DELETE USING (auth.role() = 'authenticated');
+
+-- For faqs
+DROP POLICY IF EXISTS "Admin can insert faqs" ON public.faqs;
+CREATE POLICY "Admin can insert faqs" ON public.faqs FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin can update faqs" ON public.faqs;
+CREATE POLICY "Admin can update faqs" ON public.faqs FOR UPDATE USING (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin can delete faqs" ON public.faqs;
+CREATE POLICY "Admin can delete faqs" ON public.faqs FOR DELETE USING (auth.role() = 'authenticated');
+
+-- For testimonials
+DROP POLICY IF EXISTS "Admin can insert testimonials" ON public.testimonials;
+CREATE POLICY "Admin can insert testimonials" ON public.testimonials FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin can delete testimonials" ON public.testimonials;
+CREATE POLICY "Admin can delete testimonials" ON public.testimonials FOR DELETE USING (auth.role() = 'authenticated');
 
 -- ==========================================
 -- SUPABASE STORAGE FOR IMAGES
