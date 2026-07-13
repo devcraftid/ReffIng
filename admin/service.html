@@ -380,13 +380,13 @@
       const { data, error } = await supabase.from('inventory').select('*').order('nama_barang', { ascending: true });
       const container = document.getElementById('inventory-list');
       if (error) {
-        container.innerHTML = <div class="text-xs text-red-500 p-2">Gagal memuat stok: </div>;
+        container.innerHTML = `<div class="text-xs text-red-500 p-2">Gagal memuat stok: ${error.message}</div>`;
         return;
       }
       
       allInventory = data || [];
       if (allInventory.length === 0) {
-        container.innerHTML = <div class="text-xs text-slate-400 p-2">Belum ada data barang di menu Stok.</div>;
+        container.innerHTML = `<div class="text-xs text-slate-400 p-2">Belum ada data barang di menu Stok.</div>`;
         return;
       }
       
@@ -397,18 +397,18 @@
         
         const isOutOfStock = inv.stok <= 0;
         
-        div.innerHTML = 
-          <input type="checkbox" id="inv-" value="" class="w-4 h-4 text-brand-blue rounded border-slate-300 focus:ring-brand-light-blue" >
-          <label for="inv-" class="text-xs font-medium text-slate-700 flex-1 cursor-pointer select-none flex flex-col">
-            <span></span>
-            <span class="text-[10px] ">Stok:  | Rp </span>
+        div.innerHTML = `
+          <input type="checkbox" id="inv-${inv.id}" value="${inv.id}" class="w-4 h-4 text-brand-blue rounded border-slate-300 focus:ring-brand-light-blue" ${isOutOfStock ? 'disabled' : ''}>
+          <label for="inv-${inv.id}" class="text-xs font-medium text-slate-700 flex-1 cursor-pointer select-none flex flex-col">
+            <span>${inv.nama_barang}</span>
+            <span class="text-[10px] ${isOutOfStock ? 'text-red-500' : 'text-slate-500'}">Stok: ${inv.stok} | Rp ${inv.harga_satuan || 0}</span>
           </label>
-          <input type="number" id="qty-" value="1" min="1" max="" class="w-12 px-1 py-0.5 text-xs border border-slate-200 rounded focus:outline-none focus:border-brand-blue hidden" >
-        ;
+          <input type="number" id="qty-${inv.id}" value="1" min="1" max="${inv.stok}" class="w-12 px-1 py-0.5 text-xs border border-slate-200 rounded focus:outline-none focus:border-brand-blue hidden" ${isOutOfStock ? 'disabled' : ''}>
+        `;
         
         // Show/hide qty input when checked
-        const checkbox = div.querySelector(#inv-);
-        const qtyInput = div.querySelector(#qty-);
+        const checkbox = div.querySelector('#inv-' + inv.id);
+        const qtyInput = div.querySelector('#qty-' + inv.id);
         checkbox.addEventListener('change', (e) => {
           if(e.target.checked) qtyInput.classList.remove('hidden');
           else qtyInput.classList.add('hidden');
